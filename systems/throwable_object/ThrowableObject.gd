@@ -13,6 +13,7 @@ func _physics_process(delta: float) -> void:
     throwableObjectMovement.integrate_velocity(self)
   
   move_and_slide()
+  print('DBG: velocity ', velocity)
 
 
 func _old_physics_process(delta):

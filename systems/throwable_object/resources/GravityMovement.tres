@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_ocmxl")
 speed = 98.0
+max_speed = 98.0
 direction = Vector2(0, 1)

@@ -5,4 +5,4 @@ extends ThrowableObjectMovement
 
 
 func _get_next_velocity(_velocityOwner: CharacterBody2D) -> Vector2:
-  return speed * Vector2.DOWN
+  return speed * Vector2.DOWN + _velocity
