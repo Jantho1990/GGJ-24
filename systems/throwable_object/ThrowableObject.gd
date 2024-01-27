@@ -13,7 +13,34 @@ func _physics_process(delta: float) -> void:
     throwableObjectMovement.integrate_velocity(self)
   
   move_and_slide()
+  queue_redraw()
   print('DBG: velocity ', velocity)
+
+
+func _draw() -> void:
+  var points = _get_predicted_movement(1.0)
+  draw_polygon(points, [Color(0, 1, 0)])
+
+
+func _get_predicted_movement(prediction_duration_seconds: float) -> PackedVector2Array:
+  var ret = []
+  var simulatedBody = CharacterBody2D.new()
+  simulatedBody.velocity = velocity
+  
+  var sim_delta := 1.0 / 60.0
+  var derp = prediction_duration_seconds * 1000.0 / 60.0
+  print('DBG: drawing predicted movement... %s %s' % [prediction_duration_seconds, sim_delta])
+  
+  #for i: float in range(0, prediction_duration_seconds * 1000.0, sim_delta):
+  var i = 0.0
+  while i < prediction_duration_seconds * 1000.0:
+    i += sim_delta
+    for throwableObjectMovement in movements:
+      throwableObjectMovement.integrate_velocity(simulatedBody)
+    simulatedBody.move_and_slide()
+    ret.push_back(simulatedBody.global_position)
+    print('DBG: draw update ', simulatedBody.global_position)
+  return ret
 
 
 func _old_physics_process(delta):
