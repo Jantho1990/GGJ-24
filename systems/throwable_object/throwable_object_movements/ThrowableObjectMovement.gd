@@ -33,8 +33,8 @@ func integrate_velocity(velocityOwner: CharacterBody2D) -> void:
     velocityOwner.velocity += _velocity
     #print('DBG: adding %s velocity' % [_velocity])
     
-  if velocityOwner is ThrowableObject:
-    _process_duration(velocityOwner.get_physics_process_delta_time())
+  #if velocityOwner is ThrowableObject:
+  _process_duration(velocityOwner.get_physics_process_delta_time())
 
 
 func _get_next_velocity(_velocityOwner: CharacterBody2D) -> Vector2:
@@ -51,4 +51,4 @@ func _use_set_velocity() -> bool:
 
 
 func reset() -> void:
-  pass
+  _current_duration = 0.0

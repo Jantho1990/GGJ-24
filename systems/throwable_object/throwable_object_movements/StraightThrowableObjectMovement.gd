@@ -12,4 +12,5 @@ func _get_next_velocity(velocityOwner: CharacterBody2D) -> Vector2:
 
 
 func reset() -> void:
+  super()
   _accel = Vector2.ZERO
