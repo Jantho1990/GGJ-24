@@ -1,0 +1,39 @@
+[gd_scene load_steps=12 format=3 uid="uid://dmuqo4eqjl1p7"]
+
+[ext_resource type="Script" path="res://systems/throwable_object/ThrowableObject.gd" id="1_nqau2"]
+[ext_resource type="Script" path="res://systems/throwable_object/throwable_object_movements/StraightThrowableObjectMovement.gd" id="2_km2io"]
+[ext_resource type="Texture2D" uid="uid://dceahbd0bap4f" path="res://sprites/throwables/ball.png" id="2_xkmh7"]
+[ext_resource type="Resource" uid="uid://qvufftas087p" path="res://systems/throwable_object/resources/GravityMovement.tres" id="3_c0iu0"]
+[ext_resource type="Resource" uid="uid://cnr15r0kcongw" path="res://systems/throwable_object/resources/StandardAirFriction.tres" id="4_37qh2"]
+[ext_resource type="Script" path="res://systems/throwable_object/throwable_object_movements/MaxVelocityThrowableObjectMovement.gd" id="4_pdbua"]
+[ext_resource type="Resource" uid="uid://dl7rl8i0gafn1" path="res://systems/throwable_object/resources/StandardGroundFriction.tres" id="5_meqrr"]
+[ext_resource type="Resource" uid="uid://dtc7j7005n83x" path="res://systems/throwable_object/resources/GroundBounce.tres" id="6_dgn7k"]
+
+[sub_resource type="Resource" id="Resource_jnfy2"]
+script = ExtResource("2_km2io")
+speed = 1600.0
+max_speed = 1600.0
+direction = Vector2(1, 0)
+duration = 2.0
+
+[sub_resource type="Resource" id="Resource_eltcd"]
+script = ExtResource("4_pdbua")
+speed = 1600.0
+max_speed = 1200.0
+direction = Vector2(1, 1)
+duration = -1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hxkki"]
+radius = 8.0
+
+[node name="TennisBallThrowableObject" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 13
+script = ExtResource("1_nqau2")
+movements = Array[Resource("res://systems/throwable_object/throwable_object_movements/ThrowableObjectMovement.gd")]([SubResource("Resource_jnfy2"), ExtResource("3_c0iu0"), SubResource("Resource_eltcd"), ExtResource("4_37qh2"), ExtResource("5_meqrr"), ExtResource("6_dgn7k")])
+
+[node name="Graphics" type="Sprite2D" parent="."]
+texture = ExtResource("2_xkmh7")
+
+[node name="WorldCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hxkki")

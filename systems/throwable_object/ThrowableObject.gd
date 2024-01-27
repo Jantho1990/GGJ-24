@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
   
   move_and_slide()
   #queue_redraw()
-  print('DBG: velocity ', velocity)
+  #print('DBG: velocity ', velocity)
 
 
 func _draw() -> void:

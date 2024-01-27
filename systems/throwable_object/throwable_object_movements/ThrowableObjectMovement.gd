@@ -29,17 +29,17 @@ func integrate_velocity(velocityOwner: CharacterBody2D, delta: float) -> void:
   _current_delta = delta
   #print('DBG: current delta ', _current_delta)
   if _use_set_velocity():
-    if 'aiming' in velocityOwner:
-      print('DBG: aaa prev velocity ', velocityOwner.velocity)
+    #if 'aiming' in velocityOwner:
+      #print('DBG: aaa prev velocity ', velocityOwner.velocity)
     _velocity = _get_next_velocity(velocityOwner)
     velocityOwner.velocity = _velocity
-    if 'aiming' in velocityOwner:
-      print('DBG: setting %s velocity' % [_velocity])
+    #if 'aiming' in velocityOwner:
+      #print('DBG: setting %s velocity' % [_velocity])
   else:
     _velocity += _get_next_velocity(velocityOwner)
     velocityOwner.velocity += _velocity
-    if 'aiming' in velocityOwner:
-      print('DBG: adding %s velocity' % [_velocity])
+    #if 'aiming' in velocityOwner:
+      #print('DBG: adding %s velocity' % [_velocity])
     
   #if velocityOwner is ThrowableObject:
   _process_duration(_current_delta)
