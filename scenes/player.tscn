@@ -1,16 +1,26 @@
-[gd_scene load_steps=21 format=3 uid="uid://dfkkluqpxpjpk"]
+[gd_scene load_steps=38 format=3 uid="uid://dfkkluqpxpjpk"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_khlbg"]
 [ext_resource type="Texture2D" uid="uid://dpoxw5cphws4l" path="res://sprites/player/run_0.png" id="1_qtk2g"]
 [ext_resource type="Texture2D" uid="uid://bdnw1ourfvsce" path="res://sprites/player/run_1.png" id="2_trb58"]
+[ext_resource type="Texture2D" uid="uid://d0qcyjb41okje" path="res://sprites/player/prepare_to_throw_0.png" id="2_vbe8s"]
 [ext_resource type="Texture2D" uid="uid://b0ybe8hstyshg" path="res://sprites/player/run_2.png" id="3_ku1wk"]
+[ext_resource type="Texture2D" uid="uid://rd2xu4gaq8ya" path="res://sprites/player/prepare_to_throw_1.png" id="3_m2hmt"]
 [ext_resource type="Texture2D" uid="uid://bttjm6dfc75ky" path="res://sprites/player/run_3.png" id="4_10b61"]
+[ext_resource type="Texture2D" uid="uid://di3e3kxv1bfgu" path="res://sprites/player/prepare_to_throw_2.png" id="4_f7ws2"]
+[ext_resource type="Texture2D" uid="uid://bfiq6rfjmuw52" path="res://sprites/player/prepare_to_throw_3.png" id="5_s7fni"]
 [ext_resource type="Texture2D" uid="uid://jmgv2qcqngnf" path="res://sprites/player/run_4.png" id="5_tultd"]
+[ext_resource type="Texture2D" uid="uid://c4kyeic21pf8m" path="res://sprites/player/prepare_to_throw_4.png" id="6_08ude"]
 [ext_resource type="Texture2D" uid="uid://dikokhlxbi86w" path="res://sprites/player/run_5.png" id="6_n63uy"]
+[ext_resource type="Texture2D" uid="uid://dc2konfswl2vc" path="res://sprites/player/prepare_to_throw_5.png" id="7_i4hiw"]
 [ext_resource type="Texture2D" uid="uid://bsge8h0an8ne7" path="res://sprites/player/run_6.png" id="7_w4dtg"]
+[ext_resource type="Texture2D" uid="uid://nolnqwpomchi" path="res://sprites/player/prepare_to_throw_6.png" id="8_5pwpc"]
 [ext_resource type="Texture2D" uid="uid://foweyff16de2" path="res://sprites/player/run_7.png" id="8_llrgw"]
 [ext_resource type="Texture2D" uid="uid://c3846jl3u4pn5" path="res://sprites/player/run_8.png" id="9_an4ap"]
+[ext_resource type="Texture2D" uid="uid://2qa3yq4rpbc3" path="res://sprites/player/prepare_to_throw_7.png" id="9_p3ecx"]
 [ext_resource type="Texture2D" uid="uid://ciy8ljrkjqwgu" path="res://sprites/player/run_9.png" id="10_fuvar"]
+[ext_resource type="Texture2D" uid="uid://bjibikocxfq6e" path="res://sprites/player/prepare_to_throw_8.png" id="10_ijke6"]
+[ext_resource type="Texture2D" uid="uid://bmoc6d18wk1e7" path="res://sprites/player/prepare_to_throw_9.png" id="11_pe0jy"]
 [ext_resource type="Texture2D" uid="uid://cxbv6ccyf1byo" path="res://sprites/player/tumble_0.png" id="12_g5obg"]
 [ext_resource type="Texture2D" uid="uid://dh0kcm6ivwcjn" path="res://sprites/player/tumble_1.png" id="13_htu4e"]
 [ext_resource type="Texture2D" uid="uid://fkioufbkdtj0" path="res://sprites/player/tumble_2.png" id="14_5gn7a"]
@@ -18,12 +28,70 @@
 [ext_resource type="Texture2D" uid="uid://dk1iqm4fmtgtt" path="res://sprites/player/tumble_4.png" id="16_j6r10"]
 [ext_resource type="Texture2D" uid="uid://jeih4ptm1u72" path="res://sprites/player/tumble_5.png" id="17_gnvet"]
 [ext_resource type="Texture2D" uid="uid://fc6lyf8klkfk" path="res://sprites/player/tumble_6.png" id="18_xosim"]
+[ext_resource type="Texture2D" uid="uid://c88q6rh8w12xk" path="res://sprites/player/slide1.png" id="22_m17vd"]
+[ext_resource type="Texture2D" uid="uid://dn2rc3482nmam" path="res://sprites/player/slide2.png" id="23_csklp"]
+[ext_resource type="Texture2D" uid="uid://2luhhaq21jy2" path="res://sprites/player/slide3.png" id="24_ofhxy"]
+[ext_resource type="Texture2D" uid="uid://c5y418j7vwvo0" path="res://sprites/player/slide4.png" id="25_k2h0o"]
+[ext_resource type="Texture2D" uid="uid://c3spdonqnshhu" path="res://sprites/player/throw_0.png" id="26_tu5eh"]
+[ext_resource type="Texture2D" uid="uid://bqd8di6svdlbb" path="res://sprites/player/throw_1.png" id="27_dkene"]
+[ext_resource type="Texture2D" uid="uid://c2mrtxc022pyx" path="res://sprites/player/throw_2.png" id="28_bqill"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_567wa"]
 height = 40.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8ru2p"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_trb58")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_m2hmt")
+}],
+"loop": true,
+"name": &"jump_and_prepare_to_throw",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vbe8s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m2hmt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f7ws2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_s7fni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_08ude")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_i4hiw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5pwpc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_p3ecx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ijke6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_pe0jy")
+}],
+"loop": true,
+"name": &"prepare_to_throw",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_qtk2g")
@@ -57,6 +125,50 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_m17vd")
+}],
+"loop": true,
+"name": &"slide",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_csklp")
+}],
+"loop": true,
+"name": &"slide_and_prepare_to_throw",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_csklp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_ofhxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_k2h0o")
+}],
+"loop": false,
+"name": &"slide_and_throw",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_tu5eh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_dkene")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_bqill")
+}],
+"loop": false,
+"name": &"throw",
 "speed": 10.0
 }, {
 "frames": [{
@@ -95,7 +207,7 @@ shape = SubResource("CapsuleShape2D_567wa")
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_8ru2p")
-animation = &"tumble"
+animation = &"throw"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

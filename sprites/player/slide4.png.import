@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmn2p6h66pcqd"
-path="res://.godot/imported/swim_0.png-96f903866474d225c38925eaf41a67d3.ctex"
+uid="uid://c5y418j7vwvo0"
+path="res://.godot/imported/slide4.png-7428839ebb774d9690278797b9afae44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/throwables/swim_0.png"
-dest_files=["res://.godot/imported/swim_0.png-96f903866474d225c38925eaf41a67d3.ctex"]
+source_file="res://sprites/player/slide4.png"
+dest_files=["res://.godot/imported/slide4.png-7428839ebb774d9690278797b9afae44.ctex"]
 
 [params]
 
