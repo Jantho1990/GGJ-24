@@ -7,12 +7,18 @@ const JUMP_VELOCITY = -400.0
 
 @export var movements : Array[ThrowableObjectMovement] = []
 
+var aiming := false
+
 
 func _ready() -> void:
   queue_redraw()
 
 
 func _physics_process(delta: float) -> void:
+  if aiming:
+    queue_redraw()
+    return
+  
   for throwableObjectMovement in movements:
     throwableObjectMovement.integrate_velocity(self)
   
@@ -23,6 +29,8 @@ func _physics_process(delta: float) -> void:
 
 func _draw() -> void:
   if not $Graphics:
+    return
+  if not aiming:
     return
   #return
   draw_circle(Vector2.ZERO, 5.0, Color(1, 0, 0))
@@ -77,3 +85,12 @@ func _old_physics_process(delta):
     velocity.x = move_toward(velocity.x, 0, SPEED)
 
   move_and_slide()
+
+
+func aim() -> void:
+  aiming = true
+  
+  
+func aim_release() -> void:
+  aiming = false
+  queue_redraw()
