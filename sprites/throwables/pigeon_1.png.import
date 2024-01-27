@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6hsg2k5w2e8p"
-path="res://.godot/imported/dirt.png-aa81f763c524b716a66eafd755c21f3d.ctex"
+uid="uid://csy1x3l56o6su"
+path="res://.godot/imported/pigeon_1.png-45238a379dcb679fb7219901cfff0f7b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/environment/dirt.png"
-dest_files=["res://.godot/imported/dirt.png-aa81f763c524b716a66eafd755c21f3d.ctex"]
+source_file="res://sprites/throwables/pigeon_1.png"
+dest_files=["res://.godot/imported/pigeon_1.png-45238a379dcb679fb7219901cfff0f7b.ctex"]
 
 [params]
 

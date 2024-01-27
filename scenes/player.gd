@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 160.0
 const JUMP_VELOCITY = -400.0
 const SPEED_OFFSET = 100.0;
 @export var health : int = 1000;
@@ -17,8 +17,8 @@ func _ready():
 
 func _physics_process(delta):
 	# Add the gravity.
-	#if not is_on_floor():
-		#velocity.y += gravity * delta
+	if not is_on_floor():
+		velocity.y += gravity * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump"):
