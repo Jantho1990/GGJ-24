@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwehlv0yh58k7"]
+
+[ext_resource type="Script" path="res://game_objects/TestBallThrowableObject/TestBallThrowableObject.gd" id="1_ep826"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wrwxn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1gkpr"]
+
+[node name="TestBallThrowableObject" type="CharacterBody2D"]
+script = ExtResource("1_ep826")
+
+[node name="Graphics" type="Sprite2D" parent="."]
+
+[node name="WorldCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wrwxn")
+
+[node name="EnemyCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1gkpr")

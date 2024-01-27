@@ -1,3 +1,24 @@
-[gd_scene format=3 uid="uid://b2vfvr6m6qifg"]
+[gd_scene load_steps=3 format=3 uid="uid://b2vfvr6m6qifg"]
+
+[ext_resource type="Script" path="res://_tests/ThrowableObjectTest/ThrowableObjectTest.gd" id="1_yn1pb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qccf7"]
+size = Vector2(968, 41)
 
 [node name="ThrowableObjectTest" type="Node2D"]
+script = ExtResource("1_yn1pb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -5.0
+offset_top = 511.0
+offset_right = 963.0
+offset_bottom = 551.0
+color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(9, 529)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(474, 2.5)
+shape = SubResource("RectangleShape2D_qccf7")
+metadata/_edit_lock_ = true

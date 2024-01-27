@@ -1,3 +1,4 @@
+class_name ThrowableObject
 extends CharacterBody2D
 
 
