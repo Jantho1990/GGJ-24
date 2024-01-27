@@ -9,7 +9,7 @@ var _velocity := Vector2.ZERO
 func integrate_velocity(velocityOwner: CharacterBody2D) -> void:
   _velocity = velocityOwner.velocity
   _velocity += _get_next_velocity(velocityOwner)
-  velocityOwner.velocity += _velocity
+  velocityOwner.velocity = _velocity
 
 
 func _get_next_velocity(_velocityOwner: CharacterBody2D) -> Vector2:

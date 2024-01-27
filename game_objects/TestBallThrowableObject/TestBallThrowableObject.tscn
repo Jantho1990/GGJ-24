@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwehlv0yh58k7"]
+[gd_scene load_steps=6 format=3 uid="uid://cwehlv0yh58k7"]
 
 [ext_resource type="Script" path="res://game_objects/TestBallThrowableObject/TestBallThrowableObject.gd" id="1_ep826"]
+[ext_resource type="Resource" uid="uid://cf18dvwu73faq" path="res://systems/throwable_object/resources/StraightRightMovement.tres" id="2_xtjus"]
+[ext_resource type="Resource" uid="uid://qvufftas087p" path="res://systems/throwable_object/resources/GravityMovement.tres" id="3_3etvd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wrwxn"]
 
@@ -8,6 +10,7 @@
 
 [node name="TestBallThrowableObject" type="CharacterBody2D"]
 script = ExtResource("1_ep826")
+movements = Array[Resource("res://systems/throwable_object/ThrowableObjectMovement.gd")]([ExtResource("2_xtjus"), ExtResource("3_3etvd")])
 
 [node name="Graphics" type="Sprite2D" parent="."]
 
