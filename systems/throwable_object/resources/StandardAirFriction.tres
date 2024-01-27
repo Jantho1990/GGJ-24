@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AirStraightThrowableObjectMovement" load_steps=2 format=3 uid="uid://cnr15r0kcongw"]
 
-[ext_resource type="Script" path="res://systems/throwable_object/AirStraightThrowableObjectMovement.gd" id="1_pcbum"]
+[ext_resource type="Script" path="res://systems/throwable_object/throwable_object_movements/AirStraightThrowableObjectMovement.gd" id="1_pcbum"]
 
 [resource]
 script = ExtResource("1_pcbum")

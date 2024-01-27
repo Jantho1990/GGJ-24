@@ -10,7 +10,7 @@
 
 [node name="TestBallThrowableObject" type="CharacterBody2D"]
 script = ExtResource("1_ep826")
-movements = Array[Resource("res://systems/throwable_object/ThrowableObjectMovement.gd")]([ExtResource("2_xtjus"), ExtResource("3_3etvd")])
+movements = Array[Resource("res://systems/throwable_object/throwable_object_movements/ThrowableObjectMovement.gd")]([ExtResource("2_xtjus"), ExtResource("3_3etvd")])
 
 [node name="Graphics" type="Sprite2D" parent="."]
 
