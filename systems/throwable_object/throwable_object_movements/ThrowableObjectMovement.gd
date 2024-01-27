@@ -12,10 +12,11 @@ func integrate_velocity(velocityOwner: CharacterBody2D) -> void:
   if _use_set_velocity():
     _velocity = _get_next_velocity(velocityOwner)
     velocityOwner.velocity = _velocity
+    print('DBG: setting %s velocity' % [_velocity])
   else:
     _velocity += _get_next_velocity(velocityOwner)
     velocityOwner.velocity += _velocity
-  print('DBG: adding %s velocity' % [_velocity])
+    print('DBG: adding %s velocity' % [_velocity])
 
 
 func _get_next_velocity(_velocityOwner: CharacterBody2D) -> Vector2:
