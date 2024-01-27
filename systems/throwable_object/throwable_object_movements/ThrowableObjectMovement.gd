@@ -16,7 +16,7 @@ func _process_duration(delta: float) -> void:
   if duration == -1.0:
     return
   _current_duration += delta
-  print('DBG: current duration ', _current_duration)
+  #print('DBG: current duration ', _current_duration)
   if _current_duration > duration:
     _allow_processing = false
 
@@ -27,15 +27,19 @@ func integrate_velocity(velocityOwner: CharacterBody2D, delta: float) -> void:
   
   _velocity = Vector2.ZERO
   _current_delta = delta
-  print('DBG: current delta ', _current_delta)
+  #print('DBG: current delta ', _current_delta)
   if _use_set_velocity():
+    if 'aiming' in velocityOwner:
+      print('DBG: aaa prev velocity ', velocityOwner.velocity)
     _velocity = _get_next_velocity(velocityOwner)
     velocityOwner.velocity = _velocity
-    #print('DBG: setting %s velocity' % [_velocity])
+    if 'aiming' in velocityOwner:
+      print('DBG: setting %s velocity' % [_velocity])
   else:
     _velocity += _get_next_velocity(velocityOwner)
     velocityOwner.velocity += _velocity
-    #print('DBG: adding %s velocity' % [_velocity])
+    if 'aiming' in velocityOwner:
+      print('DBG: adding %s velocity' % [_velocity])
     
   #if velocityOwner is ThrowableObject:
   _process_duration(_current_delta)
@@ -58,3 +62,7 @@ func reset() -> void:
   _current_duration = 0.0
   _allow_processing = true
   #_current_delta = 0.0
+
+
+func use() -> bool:
+  return true

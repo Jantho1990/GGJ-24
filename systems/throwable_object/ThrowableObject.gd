@@ -41,7 +41,7 @@ func _draw() -> void:
   #draw_polygon(points, [Color(0, 1, 0)])
   for point in points:
     draw_circle(point, 2.0, Color(0, 1, 0))
-    print('DBG: drawing point %s' % [point])
+    #print('DBG: drawing point %s' % [point])
   #breakpoint
 
 
@@ -60,7 +60,7 @@ func _get_predicted_movement(prediction_duration_seconds: float) -> PackedVector
   
   var sim_delta := (1.0 / 10.0) * 1000.0
   #var derp = prediction_duration_seconds * 1000.0 / 60.0
-  print('DBG: drawing predicted movement... %s %s' % [prediction_duration_seconds, sim_delta])
+  #print('DBG: drawing predicted movement... %s %s' % [prediction_duration_seconds, sim_delta])
   
   #for i: float in range(0, prediction_duration_seconds * 1000.0, sim_delta):
   var i = 0.0
