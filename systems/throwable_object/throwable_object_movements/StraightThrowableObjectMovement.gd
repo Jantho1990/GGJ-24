@@ -9,3 +9,7 @@ func _get_next_velocity(velocityOwner: CharacterBody2D) -> Vector2:
   var max_vec = max_speed * direction
   _accel = speed_vec if max_vec.length() > speed_vec.length() else max_vec
   return _accel
+
+
+func reset() -> void:
+  _accel = Vector2.ZERO

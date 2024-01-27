@@ -15,9 +15,9 @@ func _input(_inputEvent: InputEvent) -> void:
   elif Input.is_action_pressed('test_throw'):
     if not testObject:
       testObject = TestThrowableObject.instantiate()
-    add_child(testObject)
+      add_child(testObject)
+      testObject.aim()
     testObject.global_position = get_global_mouse_position()
-    testObject.aim()
     
 
 

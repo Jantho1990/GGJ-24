@@ -5,7 +5,8 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
-@export var movements : Array[ThrowableObjectMovement] = []
+@export var movements : Array[ThrowableObjectMovement] = [] :
+  set = _set_movements
 
 var aiming := false
 
@@ -33,7 +34,7 @@ func _draw() -> void:
   if not aiming:
     return
   #return
-  draw_circle(Vector2.ZERO, 5.0, Color(1, 0, 0))
+  #draw_circle(Vector2.ZERO, 5.0, Color(1, 0, 0))
   #return
   var points = _get_predicted_movement(1.0)
   #return
@@ -41,12 +42,21 @@ func _draw() -> void:
   for point in points:
     draw_circle(point, 2.0, Color(0, 1, 0))
     print('DBG: drawing point %s' % [point])
+  #breakpoint
+
+
+func _set_movements(value: Array[ThrowableObjectMovement]) -> void:
+  movements = []
+  for throwableObjectMovement in value:
+    movements.push_back(throwableObjectMovement.duplicate(true))
 
 
 func _get_predicted_movement(prediction_duration_seconds: float) -> PackedVector2Array:
+  _reset_movements()
   var ret = []
   var simulatedBody = CharacterBody2D.new()
   simulatedBody.velocity = velocity
+  #simulatedBody.aiming = true
   
   var sim_delta := (1.0 / 10.0) * 1000.0
   #var derp = prediction_duration_seconds * 1000.0 / 60.0
@@ -63,7 +73,7 @@ func _get_predicted_movement(prediction_duration_seconds: float) -> PackedVector
     predicted_velocity *= get_physics_process_delta_time()
     sim_position += predicted_velocity
     ret.push_back(sim_position)
-    print('DBG: draw update ', sim_position, ' ', predicted_velocity)
+    #print('DBG: draw update ', sim_position, ' ', predicted_velocity)
   return ret
 
 
@@ -87,6 +97,11 @@ func _old_physics_process(delta):
   move_and_slide()
 
 
+func _reset_movements() -> void:
+  for throwableObjectMovement in movements:
+    throwableObjectMovement.reset()
+
+
 func aim() -> void:
   aiming = true
   
@@ -94,3 +109,4 @@ func aim() -> void:
 func aim_release() -> void:
   aiming = false
   queue_redraw()
+  _reset_movements()
