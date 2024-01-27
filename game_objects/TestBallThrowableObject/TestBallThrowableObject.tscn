@@ -1,8 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwehlv0yh58k7"]
+[gd_scene load_steps=9 format=3 uid="uid://cwehlv0yh58k7"]
 
 [ext_resource type="Script" path="res://game_objects/TestBallThrowableObject/TestBallThrowableObject.gd" id="1_ep826"]
 [ext_resource type="Resource" uid="uid://cf18dvwu73faq" path="res://systems/throwable_object/resources/StraightRightMovement.tres" id="2_xtjus"]
 [ext_resource type="Resource" uid="uid://qvufftas087p" path="res://systems/throwable_object/resources/GravityMovement.tres" id="3_3etvd"]
+[ext_resource type="Script" path="res://systems/throwable_object/throwable_object_movements/MaxVelocityThrowableObjectMovement.gd" id="4_2mesm"]
+[ext_resource type="Resource" uid="uid://cnr15r0kcongw" path="res://systems/throwable_object/resources/StandardAirFriction.tres" id="4_4ol2d"]
+
+[sub_resource type="Resource" id="Resource_5oanm"]
+script = ExtResource("4_2mesm")
+speed = 300.0
+max_speed = 300.0
+direction = Vector2(1, 2)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wrwxn"]
 
@@ -10,7 +18,7 @@
 
 [node name="TestBallThrowableObject" type="CharacterBody2D"]
 script = ExtResource("1_ep826")
-movements = Array[Resource("res://systems/throwable_object/throwable_object_movements/ThrowableObjectMovement.gd")]([ExtResource("2_xtjus"), ExtResource("3_3etvd")])
+movements = Array[Resource("res://systems/throwable_object/throwable_object_movements/ThrowableObjectMovement.gd")]([ExtResource("2_xtjus"), ExtResource("3_3etvd"), SubResource("Resource_5oanm"), ExtResource("4_4ol2d")])
 
 [node name="Graphics" type="Sprite2D" parent="."]
 
