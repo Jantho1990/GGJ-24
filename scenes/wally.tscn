@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=3 uid="uid://vdv5a2twaovy"]
+
+[ext_resource type="Script" path="res://scenes/wally.gd" id="1_u5pkf"]
+[ext_resource type="Texture2D" uid="uid://bisuwiluim6b1" path="res://sprites/wally/walk_0.png" id="2_w6ew7"]
+[ext_resource type="Texture2D" uid="uid://btscl0ek23eqx" path="res://sprites/wally/walk_1.png" id="3_e2tci"]
+[ext_resource type="Texture2D" uid="uid://diam30jirl1k4" path="res://sprites/wally/walk_2.png" id="4_yhsgq"]
+[ext_resource type="Texture2D" uid="uid://v1eo8f57jp8u" path="res://sprites/wally/walk_3.png" id="5_urmiy"]
+[ext_resource type="Texture2D" uid="uid://bmra4pjlwt006" path="res://sprites/wally/walk_4.png" id="6_amm41"]
+[ext_resource type="Texture2D" uid="uid://cd2vgs0wojav" path="res://sprites/wally/walk_5.png" id="7_m8jjm"]
+[ext_resource type="Texture2D" uid="uid://d0xn3qn7vbqhp" path="res://sprites/wally/walk_6.png" id="8_aslie"]
+[ext_resource type="Texture2D" uid="uid://c3rb25j6fbpjd" path="res://sprites/wally/walk_7.png" id="9_vk00n"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhd06"]
+radius = 11.0
+height = 42.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0rsk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_w6ew7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_e2tci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yhsgq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_urmiy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_amm41")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_m8jjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_aslie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vk00n")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 20.0
+}]
+
+[node name="wally" type="CharacterBody2D"]
+script = ExtResource("1_u5pkf")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qhd06")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_m0rsk")
+animation = &"walk"
