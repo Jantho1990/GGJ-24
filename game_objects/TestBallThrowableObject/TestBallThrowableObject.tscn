@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwehlv0yh58k7"]
+[gd_scene load_steps=14 format=3 uid="uid://cwehlv0yh58k7"]
 
 [ext_resource type="Script" path="res://game_objects/TestBallThrowableObject/TestBallThrowableObject.gd" id="1_ep826"]
 [ext_resource type="Resource" uid="uid://cf18dvwu73faq" path="res://systems/throwable_object/resources/StraightRightMovement.tres" id="2_xtjus"]
@@ -7,19 +7,13 @@
 [ext_resource type="Script" path="res://systems/throwable_object/throwable_object_movements/GroundFrictionThrowableObjectMovement.gd" id="5_n13ce"]
 [ext_resource type="Script" path="res://systems/throwable_object/throwable_object_movements/AirFrictionThrowableObjectMovement.gd" id="6_llyan"]
 [ext_resource type="Texture2D" uid="uid://dceahbd0bap4f" path="res://sprites/throwables/ball.png" id="6_wjduk"]
+[ext_resource type="Resource" uid="uid://dtc7j7005n83x" path="res://systems/throwable_object/resources/GroundBounce.tres" id="7_tdp7n"]
 
 [sub_resource type="Resource" id="Resource_5oanm"]
 script = ExtResource("4_2mesm")
 speed = 1000.0
 max_speed = 300.0
 direction = Vector2(1, 2)
-duration = -1.0
-
-[sub_resource type="Resource" id="Resource_vvu8a"]
-script = ExtResource("5_n13ce")
-speed = 1250.0
-max_speed = 1250.0
-direction = Vector2(0, 0)
 duration = -1.0
 
 [sub_resource type="Resource" id="Resource_44fdq"]
@@ -29,13 +23,20 @@ max_speed = 300.0
 direction = Vector2(0, 0)
 duration = -1.0
 
+[sub_resource type="Resource" id="Resource_vvu8a"]
+script = ExtResource("5_n13ce")
+speed = 1250.0
+max_speed = 1250.0
+direction = Vector2(0, 0)
+duration = -1.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_wrwxn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1gkpr"]
 
 [node name="TestBallThrowableObject" type="CharacterBody2D"]
 script = ExtResource("1_ep826")
-movements = Array[Resource("res://systems/throwable_object/throwable_object_movements/ThrowableObjectMovement.gd")]([ExtResource("2_xtjus"), ExtResource("3_3etvd"), SubResource("Resource_5oanm"), SubResource("Resource_vvu8a"), SubResource("Resource_44fdq")])
+movements = Array[Resource("res://systems/throwable_object/throwable_object_movements/ThrowableObjectMovement.gd")]([ExtResource("2_xtjus"), ExtResource("3_3etvd"), SubResource("Resource_5oanm"), SubResource("Resource_44fdq"), SubResource("Resource_vvu8a"), ExtResource("7_tdp7n")])
 
 [node name="Graphics" type="Sprite2D" parent="."]
 texture = ExtResource("6_wjduk")
