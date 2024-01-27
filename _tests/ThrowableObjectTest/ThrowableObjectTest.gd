@@ -8,6 +8,8 @@ var testObject
 
 func _input(_inputEvent: InputEvent) -> void:
   if Input.is_action_just_released("test_throw"):
+    if not testObject:
+      return
     print('DBG: throw!')
     testObject.aim_release()
     testObject.global_position = get_global_mouse_position()

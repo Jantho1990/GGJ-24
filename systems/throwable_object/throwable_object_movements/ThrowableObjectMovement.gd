@@ -7,6 +7,7 @@ extends Resource
 @export var duration := -1.0 # -1.0 is infinite, otherwise will expire the movement after specified amount (in seconds)
 
 var _allow_processing := true
+var _current_delta := 0.0
 var _current_duration := 0.0
 var _velocity := Vector2.ZERO
 
@@ -15,15 +16,18 @@ func _process_duration(delta: float) -> void:
   if duration == -1.0:
     return
   _current_duration += delta
+  print('DBG: current duration ', _current_duration)
   if _current_duration > duration:
     _allow_processing = false
 
 
-func integrate_velocity(velocityOwner: CharacterBody2D) -> void:
+func integrate_velocity(velocityOwner: CharacterBody2D, delta: float) -> void:
   if not _allow_processing:
     return
   
   _velocity = Vector2.ZERO
+  _current_delta = delta
+  print('DBG: current delta ', _current_delta)
   if _use_set_velocity():
     _velocity = _get_next_velocity(velocityOwner)
     velocityOwner.velocity = _velocity
@@ -34,7 +38,7 @@ func integrate_velocity(velocityOwner: CharacterBody2D) -> void:
     #print('DBG: adding %s velocity' % [_velocity])
     
   #if velocityOwner is ThrowableObject:
-  _process_duration(velocityOwner.get_physics_process_delta_time())
+  _process_duration(_current_delta)
 
 
 func _get_next_velocity(_velocityOwner: CharacterBody2D) -> Vector2:
@@ -52,3 +56,5 @@ func _use_set_velocity() -> bool:
 
 func reset() -> void:
   _current_duration = 0.0
+  _allow_processing = true
+  #_current_delta = 0.0

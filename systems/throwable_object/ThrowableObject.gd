@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
     return
   
   for throwableObjectMovement in movements:
-    throwableObjectMovement.integrate_velocity(self)
+    throwableObjectMovement.integrate_velocity(self, delta)
   
   move_and_slide()
   #queue_redraw()
@@ -68,7 +68,7 @@ func _get_predicted_movement(prediction_duration_seconds: float) -> PackedVector
   while i < prediction_duration_seconds * 1000.0:
     i += sim_delta
     for throwableObjectMovement in movements:
-      throwableObjectMovement.integrate_velocity(simulatedBody)
+      throwableObjectMovement.integrate_velocity(simulatedBody, sim_delta / 1000.0)
     var predicted_velocity = simulatedBody.velocity
     predicted_velocity *= get_physics_process_delta_time()
     sim_position += predicted_velocity
