@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://bqd8di6svdlbb" path="res://sprites/player/throw_1.png" id="27_dkene"]
 [ext_resource type="Texture2D" uid="uid://c2mrtxc022pyx" path="res://sprites/player/throw_2.png" id="28_bqill"]
 [ext_resource type="PackedScene" uid="uid://bai0lshem42qm" path="res://scenes/thrower.tscn" id="36_wbgj4"]
-[ext_resource type="PackedScene" uid="uid://bo8roujxwxavt" path="res://game_objects/throwables/HomingPigeonThrowableObject/HomingPigeonThrowableObject.tscn" id="39_uqs5e"]
+[ext_resource type="PackedScene" uid="uid://dmuqo4eqjl1p7" path="res://game_objects/throwables/TennisBallThrowableObject/TennisBallThrowableObject.tscn" id="39_6ou0g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_567wa"]
 radius = 5.0
@@ -245,6 +245,6 @@ offset_right = 218.0
 offset_bottom = -142.0
 
 [node name="Thrower" parent="." instance=ExtResource("36_wbgj4")]
-currentThrowable = ExtResource("39_uqs5e")
+currentThrowable = ExtResource("39_6ou0g")
 
 [connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
