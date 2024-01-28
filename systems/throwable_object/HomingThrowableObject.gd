@@ -1,6 +1,8 @@
 class_name HomingThrowableObject
 extends ThrowableObject
 
+signal homing_target_identified(homingTarget)
+
 
 # Get nodes in homing_targets group
 # Filter to ones that are on-screen
@@ -22,6 +24,7 @@ var _lockedTarget: Node2D
 
 
 func _ready() -> void:
+  GlobalSignal.add_emitter('homing_target_identified', self)
   super()
   _homingTimer.one_shot = true
   add_child(_homingTimer)
@@ -33,6 +36,7 @@ func _physics_process(delta: float) -> void:
     _move_to_target()
   else:
     _acquire_targets()
+    homing_target_identified.emit(_get_closest_target())
   super(delta)
   if _lockedTarget is Marker2D and global_position.distance_to(_lockedTarget.global_position) < 10.0:
     _hit(null)
@@ -53,6 +57,7 @@ func _acquire_targets() -> void:
 
 func _home_on_closest_target(targetNode: Node2D) -> void:
   _lockedTarget = targetNode
+  homing_target_identified.emit(_lockedTarget)
   
 
 func _home_on_player(playerNode: Node2D) -> void:
@@ -64,6 +69,23 @@ func _home_on_player(playerNode: Node2D) -> void:
   _lockedTarget = playerPos
   # Reduce speed slightly.
   homing_speed = homing_speed - (homing_speed / 4)
+  homing_target_identified.emit(playerPos)
+
+
+func _get_closest_target() -> Node2D:
+  if _homing_targets.size() > 1: # It's not just the player
+    var closestTarget: Node2D
+    for homingTarget in _homing_targets:
+      if homingTarget.is_in_group('player'):
+        continue
+      if closestTarget and global_position.distance_to(homingTarget.global_position) < global_position.distance_to(closestTarget.global_position):
+        closestTarget = homingTarget
+      else:
+        closestTarget = homingTarget
+    return closestTarget
+  elif _homing_targets.size() == 1: # It's just the player
+    return _homing_targets[0]
+  return null
 
 
 func _integrate_movement_velocities(bodyNode: CharacterBody2D, delta: float) -> void:
@@ -78,6 +100,8 @@ func _hit(kinematicCollision: KinematicCollision2D) -> void:
   
   if _lockedTarget is Marker2D:
     _lockedTarget.queue_free()
+  
+  homing_target_identified.emit(null)
 
 
 func _is_valid_homing_target(targetNode: Node2D) -> bool:
