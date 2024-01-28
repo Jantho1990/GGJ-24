@@ -21,9 +21,19 @@ var gravity_modifier = 1.0;
 var SINE_WAVES_TO_ADD = 0;
 
 signal health_changed(gained : bool);
+signal dead(selfNode)
 
 func _ready():
   sprite.play('run');
+  
+
+func _enter_tree() -> void:
+  GlobalSignal.add_emitter('dead', self)
+  
+  
+func _exit_tree() -> void:
+  GlobalSignal.remove_emitter('dead', self)
+
 
 func _input(event):
   if is_hurting:
@@ -100,10 +110,10 @@ func _physics_process(delta):
   
 func get_hit():
   health -= 1;
+  print('DBG: health %s' % [health])
   health_changed.emit(false);
   if health <= 0:
-    pass
-    ## DIE
+    dead.emit(self)
   else:
     is_hurting = true;
     sprite.play('tumble');

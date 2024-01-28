@@ -1,0 +1,109 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjub8aaw78c2s"]
+
+[ext_resource type="Script" path="res://systems/screen_manager/Screen.gd" id="1_1nu4i"]
+[ext_resource type="Texture2D" uid="uid://ck30gk6p56vpe" path="res://sprites/environment/Paralax-back.png" id="2_mpd7e"]
+[ext_resource type="Texture2D" uid="uid://cg8jyp3gtjck5" path="res://sprites/environment/Paralax-fore.png" id="3_rgwr4"]
+[ext_resource type="Script" path="res://systems/screen_manager/LoadScreenButton.gd" id="4_sl0a0"]
+
+[node name="EndgameScreen" type="Node"]
+script = ExtResource("1_1nu4i")
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="Control" parent="UI/Control"]
+modulate = Color(1, 0.247059, 0.380392, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="UI/Control/Backdrop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1120.0
+offset_top = -300.0
+offset_right = 1120.0
+offset_bottom = -300.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.122173
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_mpd7e")
+
+[node name="Foreground" type="TextureRect" parent="UI/Control/Backdrop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1120.0
+offset_right = 1120.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.122173
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_rgwr4")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Control/Backdrop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0.0431373, 0.152941)
+
+[node name="Margin" type="MarginContainer" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"MarginS"
+
+[node name="VBox" type="VBoxContainer" parent="UI/Control/Margin"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Control/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]You collapse,
+overwhelmed in body
+and in spirit.[/center]
+
+[right]There is no hope for recovery.[/right]
+
+[left]You are...wacked out.[/left]"
+fit_content = true
+
+[node name="HBox" type="HBoxContainer" parent="UI/Control/Margin/VBox"]
+layout_mode = 2
+theme_type_variation = &"HBoxSpacing32"
+
+[node name="Restart" type="Button" parent="UI/Control/Margin/VBox/HBox"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Restart"
+script = ExtResource("4_sl0a0")
+screen_name = "GameScreen"
+
+[node name="TitleScreen" type="Button" parent="UI/Control/Margin/VBox/HBox"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Main Menu"
+script = ExtResource("4_sl0a0")
+screen_name = "TitleScreen"

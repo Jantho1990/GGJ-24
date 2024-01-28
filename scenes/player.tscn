@@ -203,6 +203,7 @@ animations = [{
 [node name="player" type="CharacterBody2D" groups=["homing_targets", "player"]]
 collision_layer = 2
 script = ExtResource("1_khlbg")
+health = 1
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_567wa")
