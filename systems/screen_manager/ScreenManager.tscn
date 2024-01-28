@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmkgc5hplh7p3"]
+
+[ext_resource type="Script" path="res://systems/screen_manager/screen_manager.gd" id="1_3v0y3"]
+
+[node name="ScreenManager" type="Node"]
+script = ExtResource("1_3v0y3")
+default_screen = "TitleScreen"

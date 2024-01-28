@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2j11xwvm4e0u"]
+[gd_scene load_steps=6 format=3 uid="uid://d2j11xwvm4e0u"]
 
+[ext_resource type="Script" path="res://systems/screen_manager/Screen.gd" id="1_1r4x8"]
 [ext_resource type="Texture2D" uid="uid://ck30gk6p56vpe" path="res://sprites/environment/Paralax-back.png" id="1_36yp5"]
 [ext_resource type="Texture2D" uid="uid://cg8jyp3gtjck5" path="res://sprites/environment/Paralax-fore.png" id="2_g45uj"]
+[ext_resource type="Script" path="res://systems/screen_manager/LoadScreenButton.gd" id="3_mtt8i"]
+[ext_resource type="Script" path="res://ui/nodes/generic/QuitButton.gd" id="4_oays7"]
 
 [node name="TitleScreen" type="Node"]
+script = ExtResource("1_1r4x8")
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 10
@@ -154,6 +158,8 @@ custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Start"
+script = ExtResource("3_mtt8i")
+screen_name = "GameScreen"
 
 [node name="Options" type="Button" parent="UI/MainMenu/Margin/VBox/Actions"]
 custom_minimum_size = Vector2(160, 0)
@@ -166,3 +172,4 @@ custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Quit"
+script = ExtResource("4_oays7")
