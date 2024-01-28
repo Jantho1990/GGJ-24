@@ -9,6 +9,8 @@
 [node name="ThrowableObject" type="CharacterBody2D"]
 script = ExtResource("1_ao4uw")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [node name="Graphics" type="Sprite2D" parent="."]
 
 [node name="WorldCollider" type="CollisionShape2D" parent="."]

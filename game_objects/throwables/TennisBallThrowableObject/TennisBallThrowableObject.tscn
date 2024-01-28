@@ -32,6 +32,8 @@ collision_mask = 13
 script = ExtResource("1_nqau2")
 movements = Array[Resource("res://systems/throwable_object/throwable_object_movements/ThrowableObjectMovement.gd")]([SubResource("Resource_jnfy2"), ExtResource("3_c0iu0"), SubResource("Resource_eltcd"), ExtResource("4_37qh2"), ExtResource("5_meqrr"), ExtResource("6_dgn7k")])
 
+[node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+
 [node name="Graphics" type="Sprite2D" parent="."]
 texture = ExtResource("2_xkmh7")
 

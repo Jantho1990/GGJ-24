@@ -38,6 +38,8 @@ duration = -1.0
 script = ExtResource("1_hmfco")
 movements = Array[Resource("res://systems/throwable_object/throwable_object_movements/ThrowableObjectMovement.gd")]([ExtResource("2_bg8yh"), ExtResource("3_w4gnq"), SubResource("Resource_5oanm"), SubResource("Resource_44fdq"), SubResource("Resource_vvu8a"), ExtResource("7_ivokw")])
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [node name="Graphics" type="Sprite2D" parent="."]
 texture = ExtResource("8_oa42o")
 

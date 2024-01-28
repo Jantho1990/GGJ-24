@@ -10,9 +10,12 @@ const JUMP_VELOCITY = -400.0
 
 var aiming := false
 
+@onready var _visibilityNotifier = $VisibilityNotifier
+
 
 func _ready() -> void:
   queue_redraw()
+  _visibilityNotifier.screen_exited.connect(_on_VisibilityNotifier_screen_exited)
 
 
 func _physics_process(delta: float) -> void:
@@ -43,6 +46,10 @@ func _draw() -> void:
     draw_circle(point, 2.0, Color(0, 1, 0))
     #print('DBG: drawing point %s' % [point])
   #breakpoint
+
+
+func _on_VisibilityNotifier_screen_exited() -> void:
+  queue_free()
 
 
 func _set_movements(value: Array[ThrowableObjectMovement]) -> void:
