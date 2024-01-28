@@ -52,7 +52,7 @@ animations = [{
 collision_layer = 16
 collision_mask = 14
 script = ExtResource("1_pmenk")
-homing_speed = 200.0
+homing_speed = 300.0
 movements = Array[Resource("res://systems/throwable_object/throwable_object_movements/ThrowableObjectMovement.gd")]([SubResource("Resource_28jfl"), SubResource("Resource_o3k1l"), ExtResource("4_ta1ej")])
 
 [node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]

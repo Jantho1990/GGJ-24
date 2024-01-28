@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
     _move_to_target()
   elif aiming:
     _acquire_targets()
-    homing_target_identified.emit(_get_closest_target())
+    homing_target_identified.emit(_get_closest_target_to_player())
   super(delta)
   if homing_in and not Global.object_exists(_lockedTarget): # Target was lost/destroyed. Destroy the throwable!
     _hit(null)
@@ -85,7 +85,27 @@ func _get_closest_target() -> Node2D:
         continue
       if closestTarget and global_position.distance_to(homingTarget.global_position) < global_position.distance_to(closestTarget.global_position):
         closestTarget = homingTarget
-      else:
+      elif not closestTarget:
+        closestTarget = homingTarget
+    return closestTarget
+  elif _homing_targets.size() == 1: # It's just the player
+    return _homing_targets[0]
+  return null
+  
+
+func _get_closest_target_to_player() -> Node2D:
+  var playerNode = get_tree().get_nodes_in_group('player')[0] # Hope the player always exists!
+  
+  if _homing_targets.size() > 1: # It's not just the player
+    var closestTarget: Node2D
+    for homingTarget in _homing_targets:
+      if not Global.object_exists(homingTarget):
+        continue
+      if homingTarget.is_in_group('player'):
+        continue
+      if closestTarget and playerNode.global_position.distance_to(homingTarget.global_position) < playerNode.global_position.distance_to(closestTarget.global_position):
+        closestTarget = homingTarget
+      elif not closestTarget:
         closestTarget = homingTarget
     return closestTarget
   elif _homing_targets.size() == 1: # It's just the player
@@ -125,20 +145,25 @@ func _is_valid_homing_target(targetNode: Node2D) -> bool:
 func _lock_in() -> void:
   homing_in = true
   _graphicsNode.play('homing')
-  if _homing_targets.size() > 1: # It's not just the player
-    var closestTarget: Node2D
-    for homingTarget in _homing_targets:
-      if not Global.object_exists(homingTarget):
-        continue
-      if homingTarget.is_in_group('player'):
-        continue
-      if closestTarget and global_position.distance_to(homingTarget.global_position) < global_position.distance_to(closestTarget.global_position):
-        closestTarget = homingTarget
-      else:
-        closestTarget = homingTarget
+  #if _homing_targets.size() > 1: # It's not just the player
+    #var closestTarget: Node2D
+    #for homingTarget in _homing_targets:
+      #if not Global.object_exists(homingTarget):
+        #continue
+      #if homingTarget.is_in_group('player'):
+        #continue
+      #if closestTarget and global_position.distance_to(homingTarget.global_position) < global_position.distance_to(closestTarget.global_position):
+        #closestTarget = homingTarget
+      #else:
+        #closestTarget = homingTarget
+    #_home_on_closest_target(closestTarget)
+  #elif _homing_targets.size() == 1: # It's just the player
+    #_home_on_player(_homing_targets[0])
+  var closestTarget = _get_closest_target_to_player()
+  if closestTarget and closestTarget.is_in_group('player'):
+    _home_on_player(closestTarget)
+  elif closestTarget:
     _home_on_closest_target(closestTarget)
-  elif _homing_targets.size() == 1: # It's just the player
-    _home_on_player(_homing_targets[0])
   else: # We have no targets, fall back.
     printerr('DBG: Homing pigeon has no targets, killing it.')
     queue_free()
