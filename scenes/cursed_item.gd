@@ -26,4 +26,4 @@ func _on_body_entered(body):
     if body.has_method('consume_bone'):
         body.consume_bone(buff,debuff);
         
-    pass # Replace with function body.
+        queue_free()
