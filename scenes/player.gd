@@ -21,22 +21,24 @@ func _ready():
   sprite.play('run');
 
 func _input(event):
-  if event.is_action_pressed('jump') && jumps_remaining > 0:
-    jumps_remaining -= 1;
-    velocity.y = JUMP_VELOCITY;
-    print(jumps_remaining)
-  if event.is_action_pressed('fire'):
-    pass
-    ## Let the world know player is aiming
-  if event.is_action_released("fire") && !is_throwing:
-    is_throwing = true;
-    match sprite.animation:
-      'slide_and_prepare_to_throw':
-        sprite.animation = 'slide_and_throw'
-      _:
-        sprite.animation = 'throw'
-    pass
-    ## Let the world know player throws
+	if is_hurting:
+		return;
+	if event.is_action_pressed('jump') && jumps_remaining > 0:
+		jumps_remaining -= 1;
+		velocity.y = JUMP_VELOCITY;
+		print(jumps_remaining)
+	if event.is_action_pressed('fire'):
+		pass
+		## Let the world know player is aiming
+	if event.is_action_released("fire") && !is_throwing:
+		is_throwing = true;
+		match sprite.animation:
+			'slide_and_prepare_to_throw':
+				sprite.animation = 'slide_and_throw'
+			_:
+				sprite.animation = 'throw'
+		pass
+		## Let the world know player throws
 
 func get_input():
   if Input.is_action_pressed('jump') && Input.is_action_pressed('fire'):
@@ -102,15 +104,19 @@ func get_hit():
 
 
 func _on_sprite_animation_finished():
-  match sprite.animation:
-    'tumble':
-      sprite.play('run');
-      is_hurting = false
-    'slide_and_throw':
-      is_throwing = false;
-    'throw':
-      is_throwing = false;
-  pass # Replace with function body.
+	match sprite.animation:
+		'tumble':
+			is_hurting = false;
+			sprite.play('run');
+		'slide_and_throw':
+			is_throwing = false;
+		'throw':
+			is_throwing = false;
+	pass # Replace with function body.
+	
+func consume_bone(buff,debuff):
+	print(buff);
+	print(debuff);
 
-  
-  
+	
+	

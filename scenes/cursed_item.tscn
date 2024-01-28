@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmw1kmt7jb0jj"]
+
+[ext_resource type="Script" path="res://scenes/cursed_item.gd" id="1_3romn"]
+[ext_resource type="Texture2D" uid="uid://bb7u3mn4pbpqq" path="res://sprites/evil_bone.png" id="1_4vfj0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74hrk"]
+size = Vector2(62, 104)
+
+[node name="cursed_item" type="Area2D"]
+script = ExtResource("1_3romn")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = 0.261799
+scale = Vector2(2, 2)
+texture = ExtResource("1_4vfj0")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_74hrk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
