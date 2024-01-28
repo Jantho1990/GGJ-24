@@ -57,6 +57,7 @@ func _input(event):
     ## Let the world know player is aiming
   if event.is_action_released("fire") && !is_throwing:
     is_throwing = true;
+    $SFX/ThrowWhoosh.play()
     match sprite.animation:
       'slide_and_prepare_to_throw':
         sprite.animation = 'slide_and_throw'
