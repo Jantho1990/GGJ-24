@@ -87,6 +87,7 @@ func _physics_process(delta):
   else:
     hitbox.rotation = 0;
     hitbox.position.y = 0;
+    
   move_and_slide();
   
   if is_on_floor():
@@ -135,7 +136,7 @@ func _on_sprite_animation_finished():
     match sprite.animation:
         'tumble':
             is_hurting = false;
-            sprite.play('run');
+            is_throwing = false;
         'slide_and_throw':
             is_throwing = false;
         'throw':
