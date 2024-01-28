@@ -6,6 +6,11 @@
 [resource]
 default_font = ExtResource("1_x8acb")
 default_font_size = 32
+MarginS/base_type = &"MarginContainer"
+MarginS/constants/margin_bottom = 16
+MarginS/constants/margin_left = 16
+MarginS/constants/margin_right = 16
+MarginS/constants/margin_top = 16
 Wordmark/base_type = &"Label"
 Wordmark/font_sizes/font_size = 72
 Wordmark/fonts/font = ExtResource("1_bct2m")

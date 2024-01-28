@@ -61,22 +61,48 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Center" type="CenterContainer" parent="UI/MainMenu"]
+[node name="Label" type="Label" parent="UI/MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -119.0
+offset_top = -87.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/line_spacing = -4
+theme_override_font_sizes/font_size = 16
+text = "Created for
+Global Game Jam
+2024"
+
+[node name="Margin" type="MarginContainer" parent="UI/MainMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"MarginS"
 
-[node name="VBox" type="VBoxContainer" parent="UI/MainMenu/Center"]
+[node name="VBox" type="VBoxContainer" parent="UI/MainMenu/Margin"]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 
-[node name="Wordmark" type="Control" parent="UI/MainMenu/Center/VBox"]
+[node name="Center" type="CenterContainer" parent="UI/MainMenu/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Wordmark" type="Control" parent="UI/MainMenu/Margin/VBox/Center"]
 custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Label" type="RichTextLabel" parent="UI/MainMenu/Center/VBox/Wordmark"]
+[node name="Label" type="RichTextLabel" parent="UI/MainMenu/Margin/VBox/Center/Wordmark"]
 custom_minimum_size = Vector2(300, 120)
 layout_mode = 1
 anchors_preset = -1
@@ -89,7 +115,7 @@ text = "[tornado][center]Wally's[/center][/tornado]"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Label2" type="RichTextLabel" parent="UI/MainMenu/Center/VBox/Wordmark"]
+[node name="Label2" type="RichTextLabel" parent="UI/MainMenu/Margin/VBox/Center/Wordmark"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.25
@@ -102,7 +128,7 @@ text = "[wave]Wacky[/wave]"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Label3" type="RichTextLabel" parent="UI/MainMenu/Center/VBox/Wordmark"]
+[node name="Label3" type="RichTextLabel" parent="UI/MainMenu/Margin/VBox/Center/Wordmark"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -117,6 +143,26 @@ text = "[wave]Walk[/wave]"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Label" type="Label" parent="UI/MainMenu/Center/VBox"]
+[node name="Actions" type="HBoxContainer" parent="UI/MainMenu/Margin/VBox"]
 layout_mode = 2
-text = "test"
+size_flags_horizontal = 0
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Start" type="Button" parent="UI/MainMenu/Margin/VBox/Actions"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start"
+
+[node name="Options" type="Button" parent="UI/MainMenu/Margin/VBox/Actions"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Options"
+
+[node name="Quit" type="Button" parent="UI/MainMenu/Margin/VBox/Actions"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quit"
