@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Global="*res://helpers/global.gd"
 GlobalSignal="*res://systems/global_signal/global_signal.gd"
 ScreenManager="*res://systems/screen_manager/screen_manager.gd"
+MusicManager="*res://systems/music_manager/MusicManager.tscn"
 
 [display]
 

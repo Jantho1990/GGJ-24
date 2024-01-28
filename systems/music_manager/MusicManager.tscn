@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhp48x88vasgr"]
+
+[ext_resource type="Script" path="res://systems/music_manager/MusicManager.gd" id="1_28qgr"]
+[ext_resource type="AudioStream" uid="uid://dfkcv3dqk3yqh" path="res://audio/music/WallysWackyWalk.ogg" id="2_jxwse"]
+
+[node name="MusicManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_28qgr")
+
+[node name="Gameplay" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jxwse")
+bus = &"Music"

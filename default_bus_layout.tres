@@ -1,0 +1,43 @@
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://r8xcnf45d8dw"]
+
+[sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_jftsw"]
+resource_name = "Phaser"
+
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_ggiri"]
+resource_name = "Delay"
+
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_yq5bb"]
+resource_name = "PitchShift"
+pitch_scale = 0.87
+
+[resource]
+bus/1/name = &"SFX Master"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/2/name = &"SFX"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"SFX Master"
+bus/3/name = &"Music Master"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.0
+bus/3/send = &"Master"
+bus/4/name = &"Music"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = &"Music Master"
+bus/4/effect/0/effect = SubResource("AudioEffectPhaser_jftsw")
+bus/4/effect/0/enabled = false
+bus/4/effect/1/effect = SubResource("AudioEffectDelay_ggiri")
+bus/4/effect/1/enabled = false
+bus/4/effect/2/effect = SubResource("AudioEffectPitchShift_yq5bb")
+bus/4/effect/2/enabled = false
