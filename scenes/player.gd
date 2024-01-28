@@ -23,6 +23,7 @@ var SINE_WAVES_TO_ADD = 0;
 
 signal health_changed(gained : bool);
 signal dead(selfNode)
+signal item_obtained(buff,debuff)
 
 func _ready():
   sprite.play('run');
@@ -84,7 +85,7 @@ func _physics_process(delta):
 
   # Add the gravity.
   if not is_on_floor():
-    velocity.y += gravity * delta
+    velocity.y += gravity * delta * gravity_modifier
   
   var direction = 0.0;
   if !is_throwing && !is_hurting:
@@ -139,23 +140,36 @@ func get_hit():
 
     
 func consume_bone(buff,debuff):
-    print(buff);
-    print(debuff);
+    var buff_flavor;
     match buff:
         'health':
             health += 1
             health_changed.emit(true);
+            buff_flavor = 'Health up'
         'speed':
             SPEED_OFFSET += 27;
+            buff_flavor = 'Speed up'
         'projectile_size':
             projectile_scale += 0.5;
+            buff_flavor = 'Projectile size up'
+        'jump':
+            max_jumps += 1;
+            jumps_remaining = max_jumps
+            buff_flavor = "Jumps +1"
+    var debuff_flavor;
     match debuff:
         'speed':
             SPEED_OFFSET -= 27;
+            debuff_flavor = 'Speed down'
         'low_gravity': 
-            gravity_modifier += 0.33
+            gravity_modifier *= 0.5
+            debuff_flavor = 'Low gravity'
         'sine':
             SINE_WAVES_TO_ADD += 1;
+            debuff_flavor = 'Weird projectiles'
+    
+    
+    item_obtained.emit(buff_flavor,debuff_flavor);
         
 
 
