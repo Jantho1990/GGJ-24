@@ -9,6 +9,13 @@ var SPEED_OFFSET = 53.0;
 @onready var sprite = $sprite;
 @onready var hitbox = $shape;
 @onready var hearts = $Camera2D/heart_container
+
+@onready var paper_airplane = preload("res://game_objects/throwables/PaperAirplaneThrowableObject/PaperAirplaneThrowableObject.tscn");
+@onready var tennis_ball = preload("res://game_objects/throwables/TennisBallThrowableObject/TennisBallThrowableObject.tscn");
+@onready var dolphin = preload("res://game_objects/throwables/DolphinThrowableObject/DolphinThrowableObject.tscn")
+@onready var homing_pigeon = preload("res://game_objects/throwables/HomingPigeonThrowableObject/HomingPigeonThrowableObject.tscn");
+@onready var throwables = [tennis_ball,paper_airplane,dolphin,homing_pigeon]
+@onready var current_throwable = tennis_ball
 var is_throwing : bool = false;
 var max_jumps : int = 1;
 var jumps_remaining : int = 1;
@@ -18,14 +25,15 @@ var is_dead := false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var projectile_scale = 1.0;
-var gravity_modifier = 0.5;
+var gravity_modifier = 1.0;
 var SINE_WAVES_TO_ADD = 0;
 
 signal health_changed(gained : bool);
 signal dead(selfNode)
 signal item_obtained(buff,debuff)
-
+var rng = RandomNumberGenerator.new()
 func _ready():
+
   sprite.play('run');
   
 
@@ -168,8 +176,17 @@ func consume_bone(buff,debuff):
             SINE_WAVES_TO_ADD += 1;
             debuff_flavor = 'Weird projectiles'
     
+    var possible_throwables = [];
+    for i in throwables:
+        print(current_throwable)
+        print(i)
+        if i != current_throwable:
+            possible_throwables.append(i);
+    current_throwable = possible_throwables[rng.randi_range(0,2)];
+    $Thrower.currentThrowable = current_throwable
     
     item_obtained.emit(buff_flavor,debuff_flavor);
+    
         
 
 
