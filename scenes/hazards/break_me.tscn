@@ -71,4 +71,9 @@ animation = &"sign"
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_sh538")
 
+[node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(35.025, 0.5)
+scale = Vector2(2.45, 3.25)
+rect = Rect2(-24.5, -10, 20, 20)
+
 [connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
