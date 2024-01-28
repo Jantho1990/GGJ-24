@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dfkkluqpxpjpk"]
+[gd_scene load_steps=39 format=3 uid="uid://dfkkluqpxpjpk"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_khlbg"]
 [ext_resource type="Texture2D" uid="uid://dpoxw5cphws4l" path="res://sprites/player/run_0.png" id="1_qtk2g"]
@@ -35,6 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://c3spdonqnshhu" path="res://sprites/player/throw_0.png" id="26_tu5eh"]
 [ext_resource type="Texture2D" uid="uid://bqd8di6svdlbb" path="res://sprites/player/throw_1.png" id="27_dkene"]
 [ext_resource type="Texture2D" uid="uid://c2mrtxc022pyx" path="res://sprites/player/throw_2.png" id="28_bqill"]
+[ext_resource type="PackedScene" uid="uid://bai0lshem42qm" path="res://scenes/thrower.tscn" id="36_wbgj4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_567wa"]
 height = 40.0
@@ -211,5 +212,7 @@ animation = &"throw"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+
+[node name="Thrower" parent="." instance=ExtResource("36_wbgj4")]
 
 [connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
