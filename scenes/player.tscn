@@ -213,7 +213,10 @@ sprite_frames = SubResource("SpriteFrames_8ru2p")
 animation = &"throw"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, -48)
 zoom = Vector2(2, 2)
+drag_vertical_enabled = true
+drag_top_margin = 1.0
 
 [node name="Thrower" parent="." instance=ExtResource("36_wbgj4")]
 currentThrowable = ExtResource("37_bnv5i")
