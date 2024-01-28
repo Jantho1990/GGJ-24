@@ -1,0 +1,73 @@
+[gd_scene load_steps=14 format=3 uid="uid://ccp3skqv8tbdt"]
+
+[ext_resource type="Texture2D" uid="uid://bjcrrbeiin0jt" path="res://sprites/hazards/bush.png" id="1_1l86y"]
+[ext_resource type="Script" path="res://scenes/hazards/jump_me.gd" id="1_bqcb6"]
+[ext_resource type="Texture2D" uid="uid://bnv8xkjs37vc7" path="res://sprites/hazards/explode_32_0.png" id="3_vye6h"]
+[ext_resource type="Texture2D" uid="uid://cmkjadiyq18jh" path="res://sprites/hazards/explode_32_1.png" id="4_sp7q1"]
+[ext_resource type="Texture2D" uid="uid://bi8nfda5m1i4q" path="res://sprites/hazards/explode_32_2.png" id="5_3l28y"]
+[ext_resource type="Texture2D" uid="uid://cwgbcu6v0fmph" path="res://sprites/hazards/explode_32_3.png" id="6_mdwe2"]
+[ext_resource type="Texture2D" uid="uid://b05duh2j7n5bn" path="res://sprites/hazards/explode_32_4.png" id="7_gv5vp"]
+[ext_resource type="Texture2D" uid="uid://d0t0kpdjhtano" path="res://sprites/hazards/explode_32_5.png" id="8_66ifr"]
+[ext_resource type="Texture2D" uid="uid://cofp0bc48q8p2" path="res://sprites/hazards/explode_32_6.png" id="9_ad5bb"]
+[ext_resource type="Texture2D" uid="uid://23uc34pkip7a" path="res://sprites/hazards/explode_32_7.png" id="10_cs8am"]
+[ext_resource type="Texture2D" uid="uid://cgf8r1ixn02x4" path="res://sprites/hazards/explode_32_8.png" id="11_i50ot"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cx1x6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1l86y")
+}],
+"loop": false,
+"name": &"bush",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vye6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sp7q1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3l28y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_mdwe2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_gv5vp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_66ifr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ad5bb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_cs8am")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_i50ot")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xp7sf"]
+radius = 16.0312
+
+[node name="jump_me" type="StaticBody2D"]
+script = ExtResource("1_bqcb6")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_cx1x6")
+animation = &"bush"
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_xp7sf")
+
+[connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]

@@ -1,0 +1,73 @@
+[gd_scene load_steps=14 format=3 uid="uid://ctkxx1rucnee5"]
+
+[ext_resource type="Script" path="res://scenes/hazards/break_me.gd" id="1_5oy35"]
+[ext_resource type="Texture2D" uid="uid://c6ujual3nvtnl" path="res://sprites/hazards/sign.png" id="1_246ar"]
+[ext_resource type="Texture2D" uid="uid://t5lt2e5beyao" path="res://sprites/hazards/explode_64_0.png" id="2_pl8nu"]
+[ext_resource type="Texture2D" uid="uid://c75x57dhc5g4d" path="res://sprites/hazards/explode_64_1.png" id="3_w2hfc"]
+[ext_resource type="Texture2D" uid="uid://bfh6j6p4lv7tu" path="res://sprites/hazards/explode_64_2.png" id="4_770v4"]
+[ext_resource type="Texture2D" uid="uid://dpqd0t6oqalbf" path="res://sprites/hazards/explode_64_3.png" id="5_g8bku"]
+[ext_resource type="Texture2D" uid="uid://c4q373ouou835" path="res://sprites/hazards/explode_64_4.png" id="6_pnfuv"]
+[ext_resource type="Texture2D" uid="uid://d013nea4hsjh4" path="res://sprites/hazards/explode_64_5.png" id="7_st73v"]
+[ext_resource type="Texture2D" uid="uid://fbeoofonfmqh" path="res://sprites/hazards/explode_64_6.png" id="8_uhbhr"]
+[ext_resource type="Texture2D" uid="uid://bf2vihp0bw1x3" path="res://sprites/hazards/explode_64_7.png" id="9_3le3e"]
+[ext_resource type="Texture2D" uid="uid://d1qtwjngmvufx" path="res://sprites/hazards/explode_64_8.png" id="10_lbhif"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rd5dt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pl8nu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w2hfc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_770v4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g8bku")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pnfuv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_st73v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_uhbhr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3le3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lbhif")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_246ar")
+}],
+"loop": false,
+"name": &"sign",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sh538"]
+size = Vector2(49, 64)
+
+[node name="break_me" type="StaticBody2D"]
+script = ExtResource("1_5oy35")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_rd5dt")
+animation = &"sign"
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_sh538")
+
+[connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]

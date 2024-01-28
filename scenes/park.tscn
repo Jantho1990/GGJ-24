@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcby0waljrvit"]
+[gd_scene load_steps=9 format=3 uid="uid://dcby0waljrvit"]
 
 [ext_resource type="Script" path="res://scenes/park.gd" id="1_84ba2"]
 [ext_resource type="Texture2D" uid="uid://bgvds60rskmwe" path="res://sprites/environment/park_tilesheet.png" id="1_yttrb"]
 [ext_resource type="PackedScene" uid="uid://dfkkluqpxpjpk" path="res://scenes/player.tscn" id="2_d2xp3"]
+[ext_resource type="PackedScene" uid="uid://ccp3skqv8tbdt" path="res://scenes/hazards/jump_me.tscn" id="4_7m7iw"]
+[ext_resource type="PackedScene" uid="uid://ctkxx1rucnee5" path="res://scenes/hazards/break_me.tscn" id="5_5w2yu"]
+[ext_resource type="PackedScene" uid="uid://c53n2xjsvw31t" path="res://scenes/hazards/slide_me.tscn" id="6_h2nu1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ypbf"]
 texture = ExtResource("1_yttrb")
@@ -32,3 +35,12 @@ layer_0/tile_data = PackedInt32Array(65535, 0, 0, 65534, 0, 0, 65533, 0, 0, 6553
 
 [node name="player" parent="." instance=ExtResource("2_d2xp3")]
 position = Vector2(1, -8)
+
+[node name="jump_me" parent="." instance=ExtResource("4_7m7iw")]
+position = Vector2(246, 2)
+
+[node name="break_me" parent="." instance=ExtResource("5_5w2yu")]
+position = Vector2(577, -16)
+
+[node name="slide_me" parent="." instance=ExtResource("6_h2nu1")]
+position = Vector2(907, -24)
