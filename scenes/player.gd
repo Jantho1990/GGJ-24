@@ -21,6 +21,8 @@ func _ready():
 	sprite.play('run');
 
 func _input(event):
+	if is_hurting:
+		return;
 	if event.is_action_pressed('jump') && jumps_remaining > 0:
 		jumps_remaining -= 1;
 		velocity.y = JUMP_VELOCITY;
@@ -104,13 +106,17 @@ func get_hit():
 func _on_sprite_animation_finished():
 	match sprite.animation:
 		'tumble':
+			is_hurting = false;
 			sprite.play('run');
-			is_hurting = false
 		'slide_and_throw':
 			is_throwing = false;
 		'throw':
 			is_throwing = false;
 	pass # Replace with function body.
+	
+func consume_bone(buff,debuff):
+	print(buff);
+	print(debuff);
 
 	
 	
