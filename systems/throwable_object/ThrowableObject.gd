@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
     var collisionObject = get_slide_collision(i)
     if collisionObject.get_collider().has_method('explode'):
       collisionObject.get_collider().explode();
-      queue_free()
+      _hit(collisionObject)
   #queue_redraw()
   #print('DBG: velocity ', velocity)
 
@@ -92,24 +92,8 @@ func _get_predicted_movement(prediction_duration_seconds: float) -> PackedVector
   return ret
 
 
-func _old_physics_process(delta):
-  # Add the gravity.
-  if not is_on_floor():
-    velocity.y += 98.0 * delta
-
-  # Handle jump.
-  if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-    velocity.y = JUMP_VELOCITY
-
-  # Get the input direction and handle the movement/deceleration.
-  # As good practice, you should replace UI actions with custom gameplay actions.
-  var direction = Input.get_axis("ui_left", "ui_right")
-  if direction:
-    velocity.x = direction * SPEED
-  else:
-    velocity.x = move_toward(velocity.x, 0, SPEED)
-
-  move_and_slide()
+func _hit(_collisionObject: KinematicCollision2D) -> void:
+  queue_free()
 
 
 func _reset_movements() -> void:
