@@ -50,8 +50,9 @@ curve = SubResource("Curve2D_rdfym")
 script = ExtResource("1_7p5ui")
 
 [node name="ThrowSource" type="PathFollow2D" parent="."]
-position = Vector2(-32, 0)
-rotation = -1.5708
+position = Vector2(2.62153, -23.9283)
+rotation = 0.0548054
+progress = 47.2318
 loop = false
 
 [node name="Basket" type="Node2D" parent="ThrowSource"]

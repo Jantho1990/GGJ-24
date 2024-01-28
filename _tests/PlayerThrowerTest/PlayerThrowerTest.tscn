@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://clqac2kpssd3e"]
+
+[ext_resource type="PackedScene" uid="uid://dcby0waljrvit" path="res://scenes/park.tscn" id="1_p0m1c"]
+
+[node name="PlayerThrowerTest" type="Node2D"]
+
+[node name="park" parent="." instance=ExtResource("1_p0m1c")]
