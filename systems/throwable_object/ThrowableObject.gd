@@ -23,9 +23,11 @@ func _physics_process(delta: float) -> void:
     queue_redraw()
     return
   
+  #velocity = velocity.rotated(0)
   for throwableObjectMovement in movements:
     throwableObjectMovement.integrate_velocity(self, delta)
   
+  #velocity = velocity.rotated(rotation)
   move_and_slide()
   var collisions = get_slide_collision_count()
   if collisions == 0:
@@ -71,6 +73,8 @@ func _get_predicted_movement(prediction_duration_seconds: float) -> PackedVector
   var ret = []
   var simulatedBody = CharacterBody2D.new()
   simulatedBody.velocity = velocity
+  #simulatedBody.rotation = global_rotation
+  #print('DBG: global_rotation ', global_rotation)
   #simulatedBody.aiming = true
   
   var sim_delta := (1.0 / 10.0) * 1000.0

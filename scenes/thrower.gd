@@ -31,6 +31,8 @@ func _unhandled_input(_inputEvent: InputEvent) -> void:
     var launchSource = get_parent()
     launchSource.get_parent().call_deferred("add_child", _activeThrowable)
     _activeThrowable.global_position = _throwerBasket.global_position
+    _activeThrowable.global_rotation = _throwerBasket.global_rotation
+    _activeThrowable.velocity = launchSource.velocity
     _animatorNode.stop()
     #await get_tree().idle_frame
     #await get_tree().idle_frame
