@@ -5,17 +5,21 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
+
 @export var movements : Array[ThrowableObjectMovement] = [] :
   set = _set_movements
 
 var aiming := false
 
+@onready var _graphicsNode = $Graphics
 @onready var _visibilityNotifier = $VisibilityNotifier
 
 
 func _ready() -> void:
   queue_redraw()
   _visibilityNotifier.screen_exited.connect(_on_VisibilityNotifier_screen_exited)
+  if _graphicsNode is AnimatedSprite2D:
+    _graphicsNode.play("default")
 
 
 func _physics_process(delta: float) -> void:

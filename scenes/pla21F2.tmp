@@ -36,7 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://bqd8di6svdlbb" path="res://sprites/player/throw_1.png" id="27_dkene"]
 [ext_resource type="Texture2D" uid="uid://c2mrtxc022pyx" path="res://sprites/player/throw_2.png" id="28_bqill"]
 [ext_resource type="PackedScene" uid="uid://bai0lshem42qm" path="res://scenes/thrower.tscn" id="36_wbgj4"]
-[ext_resource type="PackedScene" uid="uid://cukkg5eq87bl8" path="res://game_objects/throwables/DolphinThrowableObject/DolphinThrowableObject.tscn" id="37_3nivw"]
+[ext_resource type="PackedScene" uid="uid://dmuqo4eqjl1p7" path="res://game_objects/throwables/TennisBallThrowableObject/TennisBallThrowableObject.tscn" id="37_bnv5i"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_567wa"]
 height = 40.0
@@ -203,6 +203,7 @@ animations = [{
 [node name="player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_khlbg")
+health = null
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_567wa")
@@ -213,18 +214,9 @@ sprite_frames = SubResource("SpriteFrames_8ru2p")
 animation = &"throw"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(96, -64)
 zoom = Vector2(2, 2)
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_horizontal_offset = -0.57
-drag_left_margin = 0.64
-drag_top_margin = 1.0
-drag_right_margin = 0.0
-drag_bottom_margin = 0.0
-editor_draw_drag_margin = true
 
 [node name="Thrower" parent="." instance=ExtResource("36_wbgj4")]
-currentThrowable = ExtResource("37_3nivw")
+currentThrowable = ExtResource("37_bnv5i")
 
 [connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]

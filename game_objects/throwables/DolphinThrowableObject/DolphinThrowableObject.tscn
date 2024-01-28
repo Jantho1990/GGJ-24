@@ -1,0 +1,94 @@
+[gd_scene load_steps=17 format=3 uid="uid://cukkg5eq87bl8"]
+
+[ext_resource type="Script" path="res://systems/throwable_object/BouncyThrowableObject.gd" id="1_inwbp"]
+[ext_resource type="Script" path="res://systems/throwable_object/throwable_object_movements/StraightThrowableObjectMovement.gd" id="2_4bynd"]
+[ext_resource type="Resource" uid="uid://qvufftas087p" path="res://systems/throwable_object/resources/GravityMovement.tres" id="3_k2oil"]
+[ext_resource type="Texture2D" uid="uid://un3qu1gba4g8" path="res://sprites/throwables/dolphin_2.png" id="3_xbvvs"]
+[ext_resource type="Script" path="res://systems/throwable_object/throwable_object_movements/MaxVelocityThrowableObjectMovement.gd" id="4_3wtqa"]
+[ext_resource type="Texture2D" uid="uid://b8gccdrdhxu13" path="res://sprites/throwables/dolphin_3.png" id="4_r08mc"]
+[ext_resource type="Resource" uid="uid://cnr15r0kcongw" path="res://systems/throwable_object/resources/StandardAirFriction.tres" id="4_ttrdg"]
+[ext_resource type="Resource" uid="uid://dl7rl8i0gafn1" path="res://systems/throwable_object/resources/StandardGroundFriction.tres" id="5_7kyvo"]
+[ext_resource type="Texture2D" uid="uid://bmn2p6h66pcqd" path="res://sprites/throwables/dolphin_0.png" id="5_pgdc0"]
+[ext_resource type="Texture2D" uid="uid://da160xtmjlml5" path="res://sprites/throwables/dolphin_1.png" id="6_hvk26"]
+
+[sub_resource type="Resource" id="Resource_sd5wn"]
+script = ExtResource("2_4bynd")
+speed = 700.0
+max_speed = 700.0
+direction = Vector2(1, 0)
+duration = 1.0
+
+[sub_resource type="Resource" id="Resource_nq2tw"]
+script = ExtResource("2_4bynd")
+speed = 400.0
+max_speed = 400.0
+direction = Vector2(0, -1)
+duration = 0.5
+
+[sub_resource type="Resource" id="Resource_20ds4"]
+script = ExtResource("4_3wtqa")
+speed = 700.0
+max_speed = 700.0
+direction = Vector2(1, 1)
+duration = -1.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cs77i"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("3_xbvvs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_r08mc")
+}],
+"loop": false,
+"name": &"bounce",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_pgdc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hvk26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xbvvs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhcs2"]
+height = 50.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y1q14"]
+size = Vector2(48, 7)
+
+[node name="DolphinThrowableObject" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 13
+script = ExtResource("1_inwbp")
+bounce_force = 520.0
+movements = Array[Resource("res://systems/throwable_object/throwable_object_movements/ThrowableObjectMovement.gd")]([SubResource("Resource_sd5wn"), SubResource("Resource_nq2tw"), ExtResource("3_k2oil"), SubResource("Resource_20ds4"), ExtResource("4_ttrdg"), ExtResource("5_7kyvo")])
+
+[node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Graphics" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cs77i")
+animation = &"bounce"
+
+[node name="WorldCollider" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qhcs2")
+
+[node name="BounceArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+
+[node name="PlayerCollider" type="CollisionShape2D" parent="BounceArea"]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_y1q14")

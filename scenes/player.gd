@@ -21,24 +21,24 @@ func _ready():
   sprite.play('run');
 
 func _input(event):
-    if is_hurting:
-        return;
-    if event.is_action_pressed('jump') && jumps_remaining > 0:
-        jumps_remaining -= 1;
-        velocity.y = JUMP_VELOCITY;
-        print(jumps_remaining)
-    if event.is_action_pressed('fire'):
-        pass
-        ## Let the world know player is aiming
-    if event.is_action_released("fire") && !is_throwing:
-        is_throwing = true;
-        match sprite.animation:
-            'slide_and_prepare_to_throw':
-                sprite.animation = 'slide_and_throw'
-            _:
-                sprite.animation = 'throw'
-        pass
-        ## Let the world know player throws
+  if is_hurting:
+    return;
+  if event.is_action_pressed('jump') && jumps_remaining > 0:
+    jumps_remaining -= 1;
+    #velocity.y = JUMP_VELOCITY;
+    velocity.y += JUMP_VELOCITY;
+  if event.is_action_pressed('fire'):
+    pass
+    ## Let the world know player is aiming
+  if event.is_action_released("fire") && !is_throwing:
+    is_throwing = true;
+    match sprite.animation:
+      'slide_and_prepare_to_throw':
+        sprite.animation = 'slide_and_throw'
+      _:
+        sprite.animation = 'throw'
+    pass
+    ## Let the world know player throws
 
 func get_input():
   if Input.is_action_pressed('jump') && Input.is_action_pressed('fire'):
