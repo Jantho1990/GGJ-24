@@ -41,7 +41,8 @@
 [ext_resource type="PackedScene" uid="uid://bgvjcg3ac2unt" path="res://game_objects/throwables/PaperAirplaneThrowableObject/PaperAirplaneThrowableObject.tscn" id="37_ay3xa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_567wa"]
-height = 40.0
+radius = 5.0
+height = 34.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8ru2p"]
 animations = [{

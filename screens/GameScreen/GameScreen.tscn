@@ -2,14 +2,50 @@
 
 [ext_resource type="Script" path="res://screens/GameScreen/GameScreen.gd" id="1_2f7b5"]
 [ext_resource type="PackedScene" uid="uid://dcby0waljrvit" path="res://scenes/park.tscn" id="2_kx5xm"]
+
+[ext_resource type="PackedScene" uid="uid://dfkkluqpxpjpk" path="res://scenes/player.tscn" id="3_7o4vt"]
+
 [ext_resource type="PackedScene" uid="uid://bmh4r5no0v8d4" path="res://ui/nodes/PausePopover/PausePopover.tscn" id="3_l5mx0"]
+
 
 [node name="GameScreen" type="Node"]
 script = ExtResource("1_2f7b5")
 
 [node name="park" parent="." instance=ExtResource("2_kx5xm")]
 
+
+[node name="park2" parent="." instance=ExtResource("2_kx5xm")]
+position = Vector2(9600, 0)
+difficulty = 2
+
+[node name="park3" parent="." instance=ExtResource("2_kx5xm")]
+position = Vector2(19200, 0)
+difficulty = 3
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="player_hearts" type="HBoxContainer" parent="UI"]
+offset_right = 296.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+
+[node name="progress_bar" type="ProgressBar" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -139.5
+offset_right = 139.5
+offset_bottom = 27.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+
+[node name="player" parent="." instance=ExtResource("3_7o4vt")]
+
+[connection signal="health_changed" from="player" to="." method="_on_player_health_changed"]
+
 [node name="Pause" type="CanvasLayer" parent="."]
 layer = 100
 
 [node name="PausePopover" parent="Pause" instance=ExtResource("3_l5mx0")]
+
