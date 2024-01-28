@@ -22,6 +22,7 @@ func _process(delta):
 
 
 func _on_body_entered(body):
+    print(str(buff) + ' ' + str(debuff))
     if body.has_method('consume_bone'):
         body.consume_bone(buff,debuff);
         

@@ -218,6 +218,12 @@ zoom = Vector2(2, 2)
 drag_vertical_enabled = true
 drag_top_margin = 1.0
 
+[node name="heart_container" type="HBoxContainer" parent="Camera2D"]
+offset_left = -78.0
+offset_top = -182.0
+offset_right = 218.0
+offset_bottom = -142.0
+
 [node name="Thrower" parent="." instance=ExtResource("36_wbgj4")]
 currentThrowable = ExtResource("37_bnv5i")
 

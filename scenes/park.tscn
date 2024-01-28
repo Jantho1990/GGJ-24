@@ -79,3 +79,13 @@ position = Vector2(907, -24)
 
 [node name="cursed_item" parent="." instance=ExtResource("7_fdvjj")]
 position = Vector2(1104, -9)
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="player_hearts" type="HBoxContainer" parent="UI"]
+offset_right = 296.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+
+[connection signal="health_changed" from="player" to="." method="_on_player_health_changed"]
