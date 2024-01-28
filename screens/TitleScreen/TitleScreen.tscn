@@ -1,0 +1,122 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2j11xwvm4e0u"]
+
+[ext_resource type="Texture2D" uid="uid://ck30gk6p56vpe" path="res://sprites/environment/Paralax-back.png" id="1_36yp5"]
+[ext_resource type="Texture2D" uid="uid://cg8jyp3gtjck5" path="res://sprites/environment/Paralax-fore.png" id="2_g45uj"]
+
+[node name="TitleScreen" type="Node"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Backdrop" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="UI/Backdrop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1120.0
+offset_top = -300.0
+offset_right = 1120.0
+offset_bottom = -300.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.122173
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_36yp5")
+
+[node name="Foreground" type="TextureRect" parent="UI/Backdrop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1120.0
+offset_right = 1120.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.122173
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_g45uj")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Backdrop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0.0431373, 0.152941)
+
+[node name="MainMenu" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Center" type="CenterContainer" parent="UI/MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="UI/MainMenu/Center"]
+layout_mode = 2
+
+[node name="Wordmark" type="Control" parent="UI/MainMenu/Center/VBox"]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="UI/MainMenu/Center/VBox/Wordmark"]
+custom_minimum_size = Vector2(300, 120)
+layout_mode = 1
+anchors_preset = -1
+offset_top = -60.0
+offset_bottom = 60.0
+rotation = -0.191986
+theme_type_variation = &"WordmarkBBCode"
+bbcode_enabled = true
+text = "[tornado][center]Wally's[/center][/tornado]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Label2" type="RichTextLabel" parent="UI/MainMenu/Center/VBox/Wordmark"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.25
+rotation = -0.191986
+theme_type_variation = &"WordmarkBBCode"
+bbcode_enabled = true
+text = "[wave]Wacky[/wave]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Label3" type="RichTextLabel" parent="UI/MainMenu/Center/VBox/Wordmark"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 71.0
+rotation = -0.191986
+theme_type_variation = &"WordmarkBBCode"
+bbcode_enabled = true
+text = "[wave]Walk[/wave]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Label" type="Label" parent="UI/MainMenu/Center/VBox"]
+layout_mode = 2
+text = "test"

@@ -26,6 +26,10 @@ window/size/viewport_height=540
 window/size/resizable=false
 window/stretch/mode="canvas_items"
 
+[gui]
+
+theme/custom="res://ui/themes/WWW.tres"
+
 [input]
 
 test_throw={

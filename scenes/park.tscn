@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ctkxx1rucnee5" path="res://scenes/hazards/break_me.tscn" id="5_5w2yu"]
 [ext_resource type="PackedScene" uid="uid://c53n2xjsvw31t" path="res://scenes/hazards/slide_me.tscn" id="6_h2nu1"]
 [ext_resource type="PackedScene" uid="uid://cmw1kmt7jb0jj" path="res://scenes/cursed_item.tscn" id="7_fdvjj"]
-[ext_resource type="PackedScene" uid="uid://bnw0rsrlxqmml" path="res://ui/HomingTargetIndicator/HomingTargetIndicator.tscn" id="10_unpci"]
+[ext_resource type="PackedScene" uid="uid://bnw0rsrlxqmml" path="res://ui/nodes/HomingTargetIndicator/HomingTargetIndicator.tscn" id="10_unpci"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ypbf"]
 texture = ExtResource("1_yttrb")

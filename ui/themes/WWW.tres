@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://byergp0msc3b8"]
+
+[ext_resource type="FontFile" uid="uid://b7qxlbjat5rds" path="res://ui/fonts/Irish_Grover/IrishGrover-Regular.ttf" id="1_bct2m"]
+[ext_resource type="FontFile" uid="uid://bbdth2dhp0ig2" path="res://ui/fonts/Kalam/Kalam-Regular.ttf" id="1_x8acb"]
+
+[resource]
+default_font = ExtResource("1_x8acb")
+default_font_size = 32
+Wordmark/base_type = &"Label"
+Wordmark/font_sizes/font_size = 72
+Wordmark/fonts/font = ExtResource("1_bct2m")
+WordmarkBBCode/base_type = &"RichTextLabel"
+WordmarkBBCode/colors/font_shadow_color = Color(0, 0, 0, 1)
+WordmarkBBCode/constants/shadow_offset_x = 3
+WordmarkBBCode/constants/shadow_offset_y = 3
+WordmarkBBCode/constants/shadow_outline_size = 3
+WordmarkBBCode/font_sizes/normal_font_size = 72
+WordmarkBBCode/fonts/normal_font = ExtResource("1_bct2m")
