@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cx0vmmmu17mjl"]
+[gd_scene load_steps=4 format=3 uid="uid://cx0vmmmu17mjl"]
 
 [ext_resource type="Script" path="res://systems/screen_manager/Screen.gd" id="1_q4ku5"]
 [ext_resource type="PackedScene" uid="uid://dcby0waljrvit" path="res://scenes/park.tscn" id="2_kx5xm"]
+[ext_resource type="PackedScene" uid="uid://bmh4r5no0v8d4" path="res://ui/nodes/PausePopover/PausePopover.tscn" id="3_l5mx0"]
 
 [node name="GameScreen" type="Node"]
 script = ExtResource("1_q4ku5")
 
 [node name="park" parent="." instance=ExtResource("2_kx5xm")]
+
+[node name="Pause" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="PausePopover" parent="Pause" instance=ExtResource("3_l5mx0")]
