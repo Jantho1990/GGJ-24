@@ -39,7 +39,8 @@ func _physics_process(delta: float) -> void:
     _move_to_target()
   elif aiming:
     _acquire_targets()
-    homing_target_identified.emit(_get_closest_target_to_player())
+    _lockedTarget = _get_closest_target_to_player()
+    homing_target_identified.emit(_lockedTarget)
   super(delta)
   if homing_in and not Global.object_exists(_lockedTarget): # Target was lost/destroyed. Destroy the throwable!
     _hit(null)
@@ -76,7 +77,7 @@ func _acquire_targets() -> void:
   
 
 func _home_on_closest_target(targetNode: Node2D) -> void:
-  _lockedTarget = targetNode
+  #_lockedTarget = targetNode
   homing_target_identified.emit(_lockedTarget)
   
 
@@ -174,11 +175,11 @@ func _lock_in() -> void:
     #_home_on_closest_target(closestTarget)
   #elif _homing_targets.size() == 1: # It's just the player
     #_home_on_player(_homing_targets[0])
-  var closestTarget = _get_closest_target_to_player()
-  if closestTarget and closestTarget.is_in_group('player'):
-    _home_on_player(closestTarget)
-  elif closestTarget:
-    _home_on_closest_target(closestTarget)
+  #var closestTarget = _get_closest_target_to_player()
+  if Global.object_exists(_lockedTarget) and _lockedTarget.is_in_group('player'):
+    _home_on_player(_lockedTarget)
+  elif Global.object_exists(_lockedTarget):
+    _home_on_closest_target(_lockedTarget)
   else: # We have no targets, fall back.
     printerr('DBG: Homing pigeon has no targets, killing it.')
     queue_free()
