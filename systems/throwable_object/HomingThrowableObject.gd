@@ -46,6 +46,21 @@ func _physics_process(delta: float) -> void:
     DBG_is_zombie_pigeon = true
   if Global.object_exists(_lockedTarget) and _lockedTarget is Marker2D and global_position.distance_to(_lockedTarget.global_position) < 10.0:
     _hit(null)
+
+
+func _process_collisions() -> void:
+  var collisions = get_slide_collision_count()
+  if collisions == 0:
+    return
+  for i in collisions:
+    var collisionObject = get_slide_collision(i)
+    var colliderObject = collisionObject.get_collider()
+    if colliderObject.has_method('explode'):
+      colliderObject.explode();
+      _hit(collisionObject)
+    elif (homing_in and colliderObject == get_tree().get_nodes_in_group('player')[0]):
+      colliderObject.get_hit()
+      _hit(collisionObject)
   
 
 func _on_HomingTimer_timeout() -> void:
@@ -73,7 +88,7 @@ func _home_on_player(playerNode: Node2D) -> void:
   playerNode.get_parent().add_child(playerPos)
   _lockedTarget = playerPos
   # Reduce speed slightly.
-  homing_speed = homing_speed - (homing_speed / 4)
+  homing_speed = homing_speed - (homing_speed / 1.25)
   homing_target_identified.emit(playerPos)
 
 
