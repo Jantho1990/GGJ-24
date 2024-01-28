@@ -200,7 +200,7 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["homing_targets"]]
 collision_layer = 2
 script = ExtResource("1_khlbg")
 

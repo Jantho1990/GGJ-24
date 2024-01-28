@@ -58,7 +58,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh538"]
 size = Vector2(49, 64)
 
-[node name="break_me" type="StaticBody2D"]
+[node name="break_me" type="StaticBody2D" groups=["homing_targets"]]
 collision_layer = 9
 script = ExtResource("1_5oy35")
 

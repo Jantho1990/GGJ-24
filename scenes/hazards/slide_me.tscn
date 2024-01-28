@@ -94,7 +94,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66p13"]
 size = Vector2(30, 37)
 
-[node name="slide_me" type="StaticBody2D"]
+[node name="slide_me" type="StaticBody2D" groups=["homing_targets"]]
 collision_layer = 5
 script = ExtResource("1_7m6yc")
 
