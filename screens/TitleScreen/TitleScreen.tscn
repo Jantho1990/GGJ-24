@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2j11xwvm4e0u"]
+[gd_scene load_steps=8 format=3 uid="uid://d2j11xwvm4e0u"]
 
 [ext_resource type="Script" path="res://systems/screen_manager/Screen.gd" id="1_1r4x8"]
 [ext_resource type="Texture2D" uid="uid://ck30gk6p56vpe" path="res://sprites/environment/Paralax-back.png" id="1_36yp5"]
 [ext_resource type="Texture2D" uid="uid://cg8jyp3gtjck5" path="res://sprites/environment/Paralax-fore.png" id="2_g45uj"]
 [ext_resource type="Script" path="res://systems/screen_manager/LoadScreenButton.gd" id="3_mtt8i"]
 [ext_resource type="Script" path="res://ui/nodes/generic/QuitButton.gd" id="4_oays7"]
+[ext_resource type="Script" path="res://screens/TitleScreen/Options.gd" id="5_dak8i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hws26"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.85098, 0.454902, 0.588235, 1)
 
 [node name="TitleScreen" type="Node"]
 script = ExtResource("1_1r4x8")
@@ -166,6 +174,32 @@ custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Options"
+script = ExtResource("5_dak8i")
+
+[node name="FallbackOptions" type="PopupPanel" parent="UI/MainMenu/Margin/VBox/Actions/Options"]
+title = "You want options?!"
+initial_position = 1
+size = Vector2i(346, 280)
+theme_override_styles/panel = SubResource("StyleBoxFlat_hws26")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu/Margin/VBox/Actions/Options/FallbackOptions"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 346.0
+offset_bottom = 344.0
+
+[node name="Label" type="Label" parent="UI/MainMenu/Margin/VBox/Actions/Options/FallbackOptions/VBoxContainer"]
+layout_mode = 2
+text = "You want options?!
+
+In a game jam game?!?!
+
+You funny!!!!!!"
+
+[node name="QuitButton" type="Button" parent="UI/MainMenu/Margin/VBox/Actions/Options/FallbackOptions/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+script = ExtResource("4_oays7")
 
 [node name="Quit" type="Button" parent="UI/MainMenu/Margin/VBox/Actions"]
 custom_minimum_size = Vector2(160, 0)
