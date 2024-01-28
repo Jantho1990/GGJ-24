@@ -1,9 +1,8 @@
-extends Node2D
+extends StaticBody2D
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	spawn_hazards();
 	pass # Replace with function body.
 
 
@@ -12,7 +11,11 @@ func _process(delta):
 	pass
 
 
-func spawn_hazards():
-	for x in range(10,300):
-		pass;
-	pass
+func explode():
+	$shape.disabled = true;
+	$sprite.play('explode');
+
+func _on_sprite_animation_finished():
+	if $sprite.animation == 'explode':
+		queue_free();
+	pass # Replace with function body.
