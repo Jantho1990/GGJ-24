@@ -16,6 +16,7 @@ signal homing_target_identified(homingTarget)
 @export var homing_delay := 0.5
 
 var homing_in := false
+var dead := false
 
 var _homing_targets := []
 var _lockedTarget: Node2D
@@ -33,8 +34,11 @@ func _ready() -> void:
 
 var DBG_is_zombie_pigeon := false
 func _physics_process(delta: float) -> void:
+  if dead:
+    return
   if DBG_is_zombie_pigeon:
     push_error('HomingThrowableObject._physics_process(): Zombie object detected!')
+    #queue_free()
   if homing_in:
     _move_to_target()
   elif aiming:
@@ -137,15 +141,31 @@ func _integrate_movement_velocities(bodyNode: CharacterBody2D, delta: float) -> 
 
 
 func _hit(kinematicCollision: KinematicCollision2D) -> void:
-  super(kinematicCollision)
+  #super(kinematicCollision)
   
   homing_target_identified.emit(null)
   
   if not Global.object_exists(_lockedTarget):
+    _graphicsNode.play('explode')
+    print('DBG: homing pigeon should explode soon')
+    dead = true
+    velocity = Vector2.ZERO
+    await _graphicsNode.animation_finished
+    queue_free()
     return
   
   if _lockedTarget is Marker2D:
     _lockedTarget.queue_free()
+    
+  if kinematicCollision:
+    queue_free()
+    return
+  
+  _graphicsNode.play('explode')
+  dead = true
+  print('DBG: homing pigeon should explode soon')
+  await _graphicsNode.animation_finished
+  queue_free()
 
 
 func _is_valid_homing_target(targetNode: Node2D) -> bool:
@@ -181,8 +201,8 @@ func _lock_in() -> void:
   elif Global.object_exists(_lockedTarget):
     _home_on_closest_target(_lockedTarget)
   else: # We have no targets, fall back.
-    printerr('DBG: Homing pigeon has no targets, killing it.')
-    queue_free()
+    printerr('DBG: Homing throwable object has no targets, killing it.')
+    _hit(null)
     
   
 func _move_to_target() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bo8roujxwxavt"]
+[gd_scene load_steps=20 format=3 uid="uid://bo8roujxwxavt"]
 
 [ext_resource type="Script" path="res://systems/throwable_object/HomingThrowableObject.gd" id="1_pmenk"]
 [ext_resource type="Script" path="res://systems/throwable_object/throwable_object_movements/StraightThrowableObjectMovement.gd" id="2_oamct"]
@@ -6,6 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://csy1x3l56o6su" path="res://sprites/throwables/pigeon_1.png" id="3_cfhf5"]
 [ext_resource type="Script" path="res://systems/throwable_object/throwable_object_movements/MaxVelocityThrowableObjectMovement.gd" id="3_opb6g"]
 [ext_resource type="Resource" uid="uid://cnr15r0kcongw" path="res://systems/throwable_object/resources/StandardAirFriction.tres" id="4_ta1ej"]
+[ext_resource type="Texture2D" uid="uid://bnv8xkjs37vc7" path="res://sprites/hazards/explode_32_0.png" id="7_tljf2"]
+[ext_resource type="Texture2D" uid="uid://cmkjadiyq18jh" path="res://sprites/hazards/explode_32_1.png" id="8_rapu3"]
+[ext_resource type="Texture2D" uid="uid://bi8nfda5m1i4q" path="res://sprites/hazards/explode_32_2.png" id="9_pd476"]
+[ext_resource type="Texture2D" uid="uid://cwgbcu6v0fmph" path="res://sprites/hazards/explode_32_3.png" id="10_ia222"]
+[ext_resource type="Texture2D" uid="uid://b05duh2j7n5bn" path="res://sprites/hazards/explode_32_4.png" id="11_3thpg"]
+[ext_resource type="Texture2D" uid="uid://d0t0kpdjhtano" path="res://sprites/hazards/explode_32_5.png" id="12_bdhc2"]
+[ext_resource type="Texture2D" uid="uid://cofp0bc48q8p2" path="res://sprites/hazards/explode_32_6.png" id="13_bopqo"]
+[ext_resource type="Texture2D" uid="uid://23uc34pkip7a" path="res://sprites/hazards/explode_32_7.png" id="14_u7ipy"]
+[ext_resource type="Texture2D" uid="uid://cgf8r1ixn02x4" path="res://sprites/hazards/explode_32_8.png" id="15_git7s"]
 
 [sub_resource type="Resource" id="Resource_28jfl"]
 script = ExtResource("2_oamct")
@@ -36,6 +45,38 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("7_tljf2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rapu3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_pd476")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ia222")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3thpg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_bdhc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_bopqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_u7ipy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_git7s")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 60.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_uv6c6")
 }, {
 "duration": 1.0,
@@ -59,7 +100,6 @@ movements = Array[Resource("res://systems/throwable_object/throwable_object_move
 
 [node name="Graphics" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ajcta")
-frame_progress = 0.174961
 
 [node name="WorldCollider" type="CollisionShape2D" parent="."]
 rotation = 1.5708
