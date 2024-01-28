@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED = 160.0
 const JUMP_VELOCITY = -320.0
 var SPEED_OFFSET = 53.0;
-@export var health : int = 1000;
+@export var health : int = 1;
 
 @onready var sprite = $sprite;
 @onready var hitbox = $shape;
