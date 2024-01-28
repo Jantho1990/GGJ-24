@@ -30,34 +30,42 @@ sources/0 = SubResource("TileSetAtlasSource_5ypbf")
 [node name="park" type="Node2D"]
 script = ExtResource("1_84ba2")
 
+[node name="colorect" type="ColorRect" parent="."]
+z_as_relative = false
+offset_left = -287.0
+offset_top = -328.0
+offset_right = 9313.0
+offset_bottom = -72.0
+color = Color(0.184314, 0.592157, 0.811765, 1)
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
 
 [node name="parallax_back" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(0, -210)
-scale = Vector2(0.6, 0.6)
+position = Vector2(800, -17)
 motion_scale = Vector2(0.2, 1)
-motion_mirroring = Vector2(3200, 0)
+motion_mirroring = Vector2(1600, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/parallax_back"]
-texture = ExtResource("2_wo7u6")
-centered = false
-
-[node name="parllax_fore" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(0, -170)
+texture_repeat = 2
 scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_wo7u6")
+
+[node name="parallax_fore" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(800, -17)
 motion_scale = Vector2(0.5, 1)
-motion_mirroring = Vector2(3200, 0)
+motion_mirroring = Vector2(1600, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/parllax_fore"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/parallax_fore"]
+texture_repeat = 2
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_dvdd8")
-centered = false
 
-[node name="filter" type="ColorRect" parent="."]
-offset_left = -3.0
-offset_top = -208.0
-offset_right = 9597.0
-offset_bottom = 172.0
-color = Color(0.184314, 0.592157, 0.811765, 0.498039)
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_top = -160.0
+offset_right = 9600.0
+offset_bottom = 96.0
+color = Color(0.184314, 0.592157, 0.811765, 0.490196)
 
 [node name="foreground" type="TileMap" parent="."]
 texture_filter = 1
