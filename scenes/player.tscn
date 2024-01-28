@@ -213,16 +213,10 @@ sprite_frames = SubResource("SpriteFrames_8ru2p")
 animation = &"throw"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(96, -64)
+offset = Vector2(160, -48)
 zoom = Vector2(2, 2)
-drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_horizontal_offset = -0.57
-drag_left_margin = 0.64
 drag_top_margin = 1.0
-drag_right_margin = 0.0
-drag_bottom_margin = 0.0
-editor_draw_drag_margin = true
 
 [node name="heart_container" type="HBoxContainer" parent="Camera2D"]
 offset_left = -78.0
