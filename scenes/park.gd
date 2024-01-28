@@ -49,7 +49,6 @@ func spawn_hazards():
         for hazard in spawn_pattern:
             var hazard_instance = hazard.instantiate();
             hazard_instance.position.x = x_pos + 96*hazard_idx;
-            print(hazard_instance.position.x)
             hazard_instance.position.y = hazard_instance.y_position;
             add_child(hazard_instance);
             hazard_idx += 1

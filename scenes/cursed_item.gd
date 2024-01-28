@@ -1,6 +1,6 @@
 extends Area2D
 
-const buffs = ['health','speed','projectile_size'];
+const buffs = ['health','speed','projectile_size','jump'];
 const debuffs = ['speed','low_gravity','sine'];
 
 @export var buff : String;
@@ -22,7 +22,7 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-    print(str(buff) + ' ' + str(debuff))
+
     if body.has_method('consume_bone'):
         body.consume_bone(buff,debuff);
         

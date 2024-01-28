@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://cidafooafflw3"]
+
+[ext_resource type="Script" path="res://ui/nodes/ItemPopover/ItemPopover.gd" id="1_8sgei"]
+
+[node name="ItemPopover" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8sgei")
+
+[node name="BackgroundScreen" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.407843)
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"MarginS"
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_type_variation = &"Wordmark"
+text = "EVIL BONE"
+horizontal_alignment = 1
+
+[node name="Attributes" type="VBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Buff" type="Label" parent="Margin/VBox/Attributes"]
+layout_mode = 2
+size_flags_vertical = 1
+horizontal_alignment = 1
+
+[node name="Debuff" type="Label" parent="Margin/VBox/Attributes"]
+layout_mode = 2
+size_flags_vertical = 1
+horizontal_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_type_variation = &"HBoxSpacing32"
+
+[node name="Okay" type="Button" parent="Margin/VBox/HBox"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Okay"
