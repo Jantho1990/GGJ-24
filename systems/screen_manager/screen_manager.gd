@@ -22,7 +22,6 @@ func change_screen(new_screen_name: String) -> void:
   get_tree().root.add_child(_currentScreen)
   _currentScreen.made_active.emit()
   print('changed screen to %s' % [_currentScreen])
-  _currentScreen.name = 'yeet'
 
 
 func get_screen_path(screen_name: String) -> String:
