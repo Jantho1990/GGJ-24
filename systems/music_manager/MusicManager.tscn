@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://dfkcv3dqk3yqh" path="res://audio/music/WallysWackyWalk.ogg" id="2_jxwse"]
 
 [node name="MusicManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_28qgr")
 
 [node name="Gameplay" type="AudioStreamPlayer" parent="."]
