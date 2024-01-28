@@ -13,6 +13,7 @@ var is_throwing : bool = false;
 var max_jumps : int = 1;
 var jumps_remaining : int = 1;
 var is_hurting : bool = false;
+var is_dead := false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -55,7 +56,11 @@ func _input(event):
     pass
     ## Let the world know player throws
 
-func get_input():
+func get_input() -> float:
+  if is_dead:
+    #sprite.animation = 'tumble'
+    return 1.0
+  
   if Input.is_action_pressed('jump') && Input.is_action_pressed('fire'):
     sprite.animation = 'jump_and_prepare_to_throw';
   elif Input.is_action_pressed('jump'):
@@ -69,7 +74,6 @@ func get_input():
     sprite.animation = 'slide';
   elif Input.is_action_pressed('fire'):
     sprite.animation = 'prepare_to_throw';
-    
   
   else:
     sprite.animation = 'run';
@@ -86,7 +90,11 @@ func _physics_process(delta):
   if !is_throwing && !is_hurting:
     direction = get_input();
 
-  velocity.x = SPEED + direction * SPEED_OFFSET;
+  if is_dead:
+    var new_vel = velocity.move_toward(Vector2.ZERO, SPEED / 46.0)
+    velocity = new_vel
+  else:
+    velocity.x = SPEED + direction * SPEED_OFFSET;
 
   if !sprite.is_playing():
     sprite.play(sprite.animation);
@@ -107,13 +115,22 @@ func _physics_process(delta):
     if collision.get_collider().has_method('explode'):
       collision.get_collider().explode();
       get_hit();
+
+
+func die() -> void:
+  velocity.x = SPEED # NOTE: Without this, velocity resets to 0 on death. I couldn't figure out why, so this is my hack around it. :P
+  is_hurting = true
+  sprite.play('tumble')
+  is_dead = true
+  await get_tree().create_timer(1.0).timeout
+  dead.emit(self)
+
   
 func get_hit():
   health -= 1;
-  print('DBG: health %s' % [health])
   health_changed.emit(false);
   if health <= 0:
-    dead.emit(self)
+    die()
   else:
     is_hurting = true;
     sprite.play('tumble');
@@ -143,9 +160,14 @@ func consume_bone(buff,debuff):
 
 func _on_sprite_animation_finished():
     match sprite.animation:
+        'die':
+          sprite.animation = ''
         'tumble':
             is_hurting = false;
-            sprite.play('run');
+            if not is_dead:
+              sprite.play('run');
+            else:
+              sprite.play('die')
         'slide_and_throw':
             is_throwing = false;
         'throw':
