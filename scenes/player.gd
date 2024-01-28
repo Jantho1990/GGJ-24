@@ -100,6 +100,7 @@ func _physics_process(delta):
   
 func get_hit():
   health -= 1;
+  health_changed.emit(false);
   if health <= 0:
     pass
     ## DIE
