@@ -3,18 +3,7 @@ extends Node
 
 const SCREENS_DIR = 'res://screens'
 
-@export var default_screen: String
-
 var _currentScreen : Screen
-
-
-func _ready() -> void:
-  await get_tree().root.ready
-  
-  if _currentScreen:
-    return
-  
-  change_screen(default_screen)
 
 
 func change_screen(new_screen_name: String) -> void:
