@@ -31,14 +31,20 @@ func _ready() -> void:
   _homingTimer.timeout.connect(_on_HomingTimer_timeout)
 
 
+var DBG_is_zombie_pigeon := false
 func _physics_process(delta: float) -> void:
+  if DBG_is_zombie_pigeon:
+    push_error('HomingThrowableObject._physics_process(): Zombie object detected!')
   if homing_in:
     _move_to_target()
-  else:
+  elif aiming:
     _acquire_targets()
     homing_target_identified.emit(_get_closest_target())
   super(delta)
-  if _lockedTarget is Marker2D and global_position.distance_to(_lockedTarget.global_position) < 10.0:
+  if homing_in and not Global.object_exists(_lockedTarget): # Target was lost/destroyed. Destroy the throwable!
+    _hit(null)
+    DBG_is_zombie_pigeon = true
+  if Global.object_exists(_lockedTarget) and _lockedTarget is Marker2D and global_position.distance_to(_lockedTarget.global_position) < 10.0:
     _hit(null)
   
 
@@ -52,7 +58,6 @@ func _acquire_targets() -> void:
   for homingTarget in all_homing_targets:
     if _is_valid_homing_target(homingTarget):
       _homing_targets.push_back(homingTarget)
-  
   
 
 func _home_on_closest_target(targetNode: Node2D) -> void:
@@ -98,10 +103,13 @@ func _integrate_movement_velocities(bodyNode: CharacterBody2D, delta: float) -> 
 func _hit(kinematicCollision: KinematicCollision2D) -> void:
   super(kinematicCollision)
   
+  homing_target_identified.emit(null)
+  
+  if not Global.object_exists(_lockedTarget):
+    return
+  
   if _lockedTarget is Marker2D:
     _lockedTarget.queue_free()
-  
-  homing_target_identified.emit(null)
 
 
 func _is_valid_homing_target(targetNode: Node2D) -> bool:
@@ -120,6 +128,8 @@ func _lock_in() -> void:
   if _homing_targets.size() > 1: # It's not just the player
     var closestTarget: Node2D
     for homingTarget in _homing_targets:
+      if not Global.object_exists(homingTarget):
+        continue
       if homingTarget.is_in_group('player'):
         continue
       if closestTarget and global_position.distance_to(homingTarget.global_position) < global_position.distance_to(closestTarget.global_position):
