@@ -18,7 +18,7 @@ var is_dead := false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var projectile_scale = 1.0;
-var gravity_modifier = 1.0;
+var gravity_modifier = 0.5;
 var SINE_WAVES_TO_ADD = 0;
 
 signal health_changed(gained : bool);

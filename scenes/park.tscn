@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcby0waljrvit"]
+[gd_scene load_steps=10 format=3 uid="uid://dcby0waljrvit"]
 
 [ext_resource type="Script" path="res://scenes/park.gd" id="1_84ba2"]
 [ext_resource type="Texture2D" uid="uid://bgvds60rskmwe" path="res://sprites/environment/park_tilesheet.png" id="1_yttrb"]
 [ext_resource type="Texture2D" uid="uid://cg8jyp3gtjck5" path="res://sprites/environment/Paralax-fore.png" id="2_dvdd8"]
 [ext_resource type="Texture2D" uid="uid://ck30gk6p56vpe" path="res://sprites/environment/Paralax-back.png" id="2_wo7u6"]
+[ext_resource type="Texture2D" uid="uid://bhx0dblh586ga" path="res://sprites/environment/SpaceDolphin.png" id="4_lwiol"]
 [ext_resource type="PackedScene" uid="uid://cmw1kmt7jb0jj" path="res://scenes/cursed_item.tscn" id="7_fdvjj"]
 [ext_resource type="PackedScene" uid="uid://bnw0rsrlxqmml" path="res://ui/nodes/HomingTargetIndicator/HomingTargetIndicator.tscn" id="10_unpci"]
 
@@ -48,6 +49,16 @@ motion_mirroring = Vector2(3200, 0)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/parllax_fore"]
 texture = ExtResource("2_dvdd8")
 centered = false
+
+[node name="parallax_space" type="ParallaxLayer" parent="ParallaxBackground"]
+scale = Vector2(0.25, 0.25)
+motion_scale = Vector2(0.05, 1)
+motion_mirroring = Vector2(3200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/parallax_space"]
+texture = ExtResource("4_lwiol")
+centered = false
+offset = Vector2(0, -2600)
 
 [node name="filter" type="ColorRect" parent="."]
 offset_left = -3.0
