@@ -16,6 +16,7 @@ signal homing_target_identified(homingTarget)
 @export var homing_delay := 0.5
 
 var homing_in := false
+var dead := false
 
 var _homing_targets := []
 var _lockedTarget: Node2D
@@ -31,15 +32,40 @@ func _ready() -> void:
   _homingTimer.timeout.connect(_on_HomingTimer_timeout)
 
 
+var DBG_is_zombie_pigeon := false
 func _physics_process(delta: float) -> void:
+  if dead:
+    return
+  if DBG_is_zombie_pigeon:
+    push_error('HomingThrowableObject._physics_process(): Zombie object detected!')
+    #queue_free()
   if homing_in:
     _move_to_target()
-  else:
+  elif aiming:
     _acquire_targets()
-    homing_target_identified.emit(_get_closest_target())
+    _lockedTarget = _get_closest_target_to_player()
+    homing_target_identified.emit(_lockedTarget)
   super(delta)
-  if _lockedTarget is Marker2D and global_position.distance_to(_lockedTarget.global_position) < 10.0:
+  if homing_in and not Global.object_exists(_lockedTarget): # Target was lost/destroyed. Destroy the throwable!
     _hit(null)
+    DBG_is_zombie_pigeon = true
+  if Global.object_exists(_lockedTarget) and _lockedTarget is Marker2D and global_position.distance_to(_lockedTarget.global_position) < 10.0:
+    _hit(null)
+
+
+func _process_collisions() -> void:
+  var collisions = get_slide_collision_count()
+  if collisions == 0:
+    return
+  for i in collisions:
+    var collisionObject = get_slide_collision(i)
+    var colliderObject = collisionObject.get_collider()
+    if colliderObject.has_method('explode'):
+      colliderObject.explode();
+      _hit(collisionObject)
+    elif (homing_in and colliderObject == get_tree().get_nodes_in_group('player')[0]):
+      colliderObject.get_hit()
+      _hit(collisionObject)
   
 
 func _on_HomingTimer_timeout() -> void:
@@ -53,10 +79,9 @@ func _acquire_targets() -> void:
     if _is_valid_homing_target(homingTarget):
       _homing_targets.push_back(homingTarget)
   
-  
 
 func _home_on_closest_target(targetNode: Node2D) -> void:
-  _lockedTarget = targetNode
+  #_lockedTarget = targetNode
   homing_target_identified.emit(_lockedTarget)
   
 
@@ -68,7 +93,7 @@ func _home_on_player(playerNode: Node2D) -> void:
   playerNode.get_parent().add_child(playerPos)
   _lockedTarget = playerPos
   # Reduce speed slightly.
-  homing_speed = homing_speed - (homing_speed / 4)
+  homing_speed = homing_speed - (homing_speed / 1.25)
   homing_target_identified.emit(playerPos)
 
 
@@ -80,7 +105,27 @@ func _get_closest_target() -> Node2D:
         continue
       if closestTarget and global_position.distance_to(homingTarget.global_position) < global_position.distance_to(closestTarget.global_position):
         closestTarget = homingTarget
-      else:
+      elif not closestTarget:
+        closestTarget = homingTarget
+    return closestTarget
+  elif _homing_targets.size() == 1: # It's just the player
+    return _homing_targets[0]
+  return null
+  
+
+func _get_closest_target_to_player() -> Node2D:
+  var playerNode = get_tree().get_nodes_in_group('player')[0] # Hope the player always exists!
+  
+  if _homing_targets.size() > 1: # It's not just the player
+    var closestTarget: Node2D
+    for homingTarget in _homing_targets:
+      if not Global.object_exists(homingTarget):
+        continue
+      if homingTarget.is_in_group('player'):
+        continue
+      if closestTarget and playerNode.global_position.distance_to(homingTarget.global_position) < playerNode.global_position.distance_to(closestTarget.global_position):
+        closestTarget = homingTarget
+      elif not closestTarget:
         closestTarget = homingTarget
     return closestTarget
   elif _homing_targets.size() == 1: # It's just the player
@@ -96,12 +141,31 @@ func _integrate_movement_velocities(bodyNode: CharacterBody2D, delta: float) -> 
 
 
 func _hit(kinematicCollision: KinematicCollision2D) -> void:
-  super(kinematicCollision)
+  #super(kinematicCollision)
+  
+  homing_target_identified.emit(null)
+  
+  if not Global.object_exists(_lockedTarget):
+    _graphicsNode.play('explode')
+    print('DBG: homing pigeon should explode soon')
+    dead = true
+    velocity = Vector2.ZERO
+    await _graphicsNode.animation_finished
+    queue_free()
+    return
   
   if _lockedTarget is Marker2D:
     _lockedTarget.queue_free()
+    
+  if kinematicCollision:
+    queue_free()
+    return
   
-  homing_target_identified.emit(null)
+  _graphicsNode.play('explode')
+  dead = true
+  print('DBG: homing pigeon should explode soon')
+  await _graphicsNode.animation_finished
+  queue_free()
 
 
 func _is_valid_homing_target(targetNode: Node2D) -> bool:
@@ -117,21 +181,28 @@ func _is_valid_homing_target(targetNode: Node2D) -> bool:
 func _lock_in() -> void:
   homing_in = true
   _graphicsNode.play('homing')
-  if _homing_targets.size() > 1: # It's not just the player
-    var closestTarget: Node2D
-    for homingTarget in _homing_targets:
-      if homingTarget.is_in_group('player'):
-        continue
-      if closestTarget and global_position.distance_to(homingTarget.global_position) < global_position.distance_to(closestTarget.global_position):
-        closestTarget = homingTarget
-      else:
-        closestTarget = homingTarget
-    _home_on_closest_target(closestTarget)
-  elif _homing_targets.size() == 1: # It's just the player
-    _home_on_player(_homing_targets[0])
+  #if _homing_targets.size() > 1: # It's not just the player
+    #var closestTarget: Node2D
+    #for homingTarget in _homing_targets:
+      #if not Global.object_exists(homingTarget):
+        #continue
+      #if homingTarget.is_in_group('player'):
+        #continue
+      #if closestTarget and global_position.distance_to(homingTarget.global_position) < global_position.distance_to(closestTarget.global_position):
+        #closestTarget = homingTarget
+      #else:
+        #closestTarget = homingTarget
+    #_home_on_closest_target(closestTarget)
+  #elif _homing_targets.size() == 1: # It's just the player
+    #_home_on_player(_homing_targets[0])
+  #var closestTarget = _get_closest_target_to_player()
+  if Global.object_exists(_lockedTarget) and _lockedTarget.is_in_group('player'):
+    _home_on_player(_lockedTarget)
+  elif Global.object_exists(_lockedTarget):
+    _home_on_closest_target(_lockedTarget)
   else: # We have no targets, fall back.
-    printerr('DBG: Homing pigeon has no targets, killing it.')
-    queue_free()
+    printerr('DBG: Homing throwable object has no targets, killing it.')
+    _hit(null)
     
   
 func _move_to_target() -> void:
