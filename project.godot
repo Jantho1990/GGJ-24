@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Wally's Wacky Walk"
+run/main_scene="res://systems/screen_manager/ScreenManagerInit.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -18,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://helpers/global.gd"
 GlobalSignal="*res://systems/global_signal/global_signal.gd"
+ScreenManager="*res://systems/screen_manager/screen_manager.gd"
 
 [display]
 
@@ -25,6 +27,10 @@ window/size/viewport_width=960
 window/size/viewport_height=540
 window/size/resizable=false
 window/stretch/mode="canvas_items"
+
+[gui]
+
+theme/custom="res://ui/themes/WWW.tres"
 
 [input]
 
