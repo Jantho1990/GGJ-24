@@ -27,6 +27,14 @@ func _physics_process(delta: float) -> void:
     throwableObjectMovement.integrate_velocity(self, delta)
   
   move_and_slide()
+  var collisions = get_slide_collision_count()
+  if collisions == 0:
+    return
+  for i in collisions:
+    var collisionObject = get_slide_collision(i)
+    if collisionObject.get_collider().has_method('explode'):
+      collisionObject.get_collider().explode();
+      queue_free()
   #queue_redraw()
   #print('DBG: velocity ', velocity)
 
