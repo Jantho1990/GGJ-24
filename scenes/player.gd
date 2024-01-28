@@ -3,11 +3,12 @@ extends CharacterBody2D
 
 const SPEED = 160.0
 const JUMP_VELOCITY = -320.0
-const SPEED_OFFSET = 53.0;
+var SPEED_OFFSET = 53.0;
 @export var health : int = 1000;
 
 @onready var sprite = $sprite;
 @onready var hitbox = $shape;
+@onready var hearts = $Camera2D/heart_container
 var is_throwing : bool = false;
 var max_jumps : int = 1;
 var jumps_remaining : int = 1;
@@ -15,7 +16,11 @@ var is_hurting : bool = false;
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var projectile_scale = 1.0;
+var gravity_modifier = 1.0;
+var SINE_WAVES_TO_ADD = 0;
 
+signal health_changed(gained : bool);
 
 func _ready():
   sprite.play('run');
@@ -105,12 +110,24 @@ func get_hit():
 
     
 func consume_bone(buff,debuff):
-    
     print(buff);
     print(debuff);
-
-    
-    
+    match buff:
+        'health':
+            health += 1
+            health_changed.emit(true);
+        'speed':
+            SPEED_OFFSET += 27;
+        'projectile_size':
+            projectile_scale += 0.5;
+    match debuff:
+        'speed':
+            SPEED_OFFSET -= 27;
+        'low_gravity': 
+            gravity_modifier += 0.33
+        'sine':
+            SINE_WAVES_TO_ADD += 1;
+        
 
 
 func _on_sprite_animation_finished():

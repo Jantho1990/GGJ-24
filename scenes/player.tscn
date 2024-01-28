@@ -224,6 +224,12 @@ drag_right_margin = 0.0
 drag_bottom_margin = 0.0
 editor_draw_drag_margin = true
 
+[node name="heart_container" type="HBoxContainer" parent="Camera2D"]
+offset_left = -78.0
+offset_top = -182.0
+offset_right = 218.0
+offset_bottom = -142.0
+
 [node name="Thrower" parent="." instance=ExtResource("36_wbgj4")]
 currentThrowable = ExtResource("37_3nivw")
 
