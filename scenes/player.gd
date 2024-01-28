@@ -103,20 +103,23 @@ func get_hit():
     sprite.play('tumble');
 
 
-func _on_sprite_animation_finished():
-  match sprite.animation:
-    'tumble':
-      is_hurting = false;
-      sprite.play('run');
-    'slide_and_throw':
-      is_throwing = false;
-    'throw':
-      is_throwing = false;
-  pass # Replace with function body.
-  
+    
 func consume_bone(buff,debuff):
-  print(buff);
-  print(debuff);
+    
+    print(buff);
+    print(debuff);
 
-  
-  
+    
+    
+
+
+func _on_sprite_animation_finished():
+    match sprite.animation:
+        'tumble':
+            is_hurting = false;
+            sprite.play('run');
+        'slide_and_throw':
+            is_throwing = false;
+        'throw':
+            is_throwing = false;
+    pass # Replace with function body.
