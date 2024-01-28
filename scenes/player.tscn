@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dfkkluqpxpjpk"]
+[gd_scene load_steps=42 format=3 uid="uid://dfkkluqpxpjpk"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_khlbg"]
 [ext_resource type="Texture2D" uid="uid://dpoxw5cphws4l" path="res://sprites/player/run_0.png" id="1_qtk2g"]
@@ -8,9 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://rd2xu4gaq8ya" path="res://sprites/player/prepare_to_throw_1.png" id="3_m2hmt"]
 [ext_resource type="Texture2D" uid="uid://bttjm6dfc75ky" path="res://sprites/player/run_3.png" id="4_10b61"]
 [ext_resource type="Texture2D" uid="uid://di3e3kxv1bfgu" path="res://sprites/player/prepare_to_throw_2.png" id="4_f7ws2"]
+[ext_resource type="Texture2D" uid="uid://eimc6m126hgy" path="res://sprites/player/die_0.png" id="5_3euah"]
 [ext_resource type="Texture2D" uid="uid://bfiq6rfjmuw52" path="res://sprites/player/prepare_to_throw_3.png" id="5_s7fni"]
 [ext_resource type="Texture2D" uid="uid://jmgv2qcqngnf" path="res://sprites/player/run_4.png" id="5_tultd"]
 [ext_resource type="Texture2D" uid="uid://c4kyeic21pf8m" path="res://sprites/player/prepare_to_throw_4.png" id="6_08ude"]
+[ext_resource type="Texture2D" uid="uid://o6kq0jj2rqmb" path="res://sprites/player/die_1.png" id="6_je7te"]
 [ext_resource type="Texture2D" uid="uid://dikokhlxbi86w" path="res://sprites/player/run_5.png" id="6_n63uy"]
 [ext_resource type="Texture2D" uid="uid://dc2konfswl2vc" path="res://sprites/player/prepare_to_throw_5.png" id="7_i4hiw"]
 [ext_resource type="Texture2D" uid="uid://bsge8h0an8ne7" path="res://sprites/player/run_6.png" id="7_w4dtg"]
@@ -44,6 +46,26 @@ height = 34.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8ru2p"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_g5obg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_htu4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_5gn7a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3euah")
+}, {
+"duration": 10.0,
+"texture": ExtResource("6_je7te")
+}],
+"loop": false,
+"name": &"die",
+"speed": 15.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_trb58")
@@ -211,7 +233,9 @@ shape = SubResource("CapsuleShape2D_567wa")
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_8ru2p")
-animation = &"throw"
+animation = &"die"
+frame = 4
+frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(96, -64)
