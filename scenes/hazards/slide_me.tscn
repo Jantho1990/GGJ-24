@@ -95,12 +95,12 @@ animations = [{
 size = Vector2(30, 37)
 
 [node name="slide_me" type="StaticBody2D"]
+collision_layer = 5
 script = ExtResource("1_7m6yc")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_t5o2c")
-animation = &"explode"
 
 [node name="shape" type="CollisionShape2D" parent="."]
 position = Vector2(1, -5.5)

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AirStraightThrowableObjectMovement" load_steps=2 format=3 uid="uid://cnr15r0kcongw"]
+
+[ext_resource type="Script" path="res://systems/throwable_object/throwable_object_movements/AirStraightThrowableObjectMovement.gd" id="1_w8236"]
+
+[resource]
+script = ExtResource("1_w8236")
+speed = 1250.0
+max_speed = 1250.0
+direction = Vector2(0, 0)
+duration = -1.0

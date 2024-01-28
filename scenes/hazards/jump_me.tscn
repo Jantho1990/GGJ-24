@@ -59,6 +59,7 @@ animations = [{
 radius = 16.0312
 
 [node name="jump_me" type="StaticBody2D"]
+collision_layer = 9
 script = ExtResource("1_bqcb6")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
