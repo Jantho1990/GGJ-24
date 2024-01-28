@@ -105,6 +105,7 @@ func _physics_process(delta):
   else:
     hitbox.rotation = 0;
     hitbox.position.y = 0;
+    
   move_and_slide();
   
   if is_on_floor():
@@ -168,6 +169,7 @@ func _on_sprite_animation_finished():
               sprite.play('run');
             else:
               sprite.play('die')
+
         'slide_and_throw':
             is_throwing = false;
         'throw':
