@@ -52,14 +52,14 @@ animations = [{
 collision_layer = 16
 collision_mask = 14
 script = ExtResource("1_pmenk")
-homing_speed = 250.0
+homing_speed = 200.0
 movements = Array[Resource("res://systems/throwable_object/throwable_object_movements/ThrowableObjectMovement.gd")]([SubResource("Resource_28jfl"), SubResource("Resource_o3k1l"), ExtResource("4_ta1ej")])
 
 [node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="Graphics" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ajcta")
-frame_progress = 0.300287
+frame_progress = 0.174961
 
 [node name="WorldCollider" type="CollisionShape2D" parent="."]
 rotation = 1.5708

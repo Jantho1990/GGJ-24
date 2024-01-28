@@ -34,6 +34,8 @@ func _physics_process(delta: float) -> void:
   else:
     _acquire_targets()
   super(delta)
+  if _lockedTarget is Marker2D and global_position.distance_to(_lockedTarget.global_position) < 10.0:
+    _hit(null)
   
 
 func _on_HomingTimer_timeout() -> void:
@@ -60,6 +62,8 @@ func _home_on_player(playerNode: Node2D) -> void:
   playerPos.global_position = playerNode.global_position
   playerNode.get_parent().add_child(playerPos)
   _lockedTarget = playerPos
+  # Reduce speed slightly.
+  homing_speed = homing_speed - (homing_speed / 4)
 
 
 func _integrate_movement_velocities(bodyNode: CharacterBody2D, delta: float) -> void:
@@ -107,6 +111,8 @@ func _lock_in() -> void:
     
   
 func _move_to_target() -> void:
+  if not Global.object_exists(_lockedTarget):
+    return
   var direction_to = global_position.direction_to(_lockedTarget.global_position)
   velocity += direction_to * homing_speed
 
