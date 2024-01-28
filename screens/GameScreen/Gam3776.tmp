@@ -43,7 +43,4 @@ layer = 100
 
 [node name="PausePopover" parent="Pause" instance=ExtResource("3_l5mx0")]
 
-[node name="CursedItem" type="CanvasLayer" parent="."]
-layer = 3
-
 [connection signal="health_changed" from="player" to="." method="_on_player_health_changed"]
