@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dcby0waljrvit"]
+[gd_scene load_steps=13 format=3 uid="uid://dcby0waljrvit"]
 
 [ext_resource type="Script" path="res://scenes/park.gd" id="1_84ba2"]
 [ext_resource type="Texture2D" uid="uid://bgvds60rskmwe" path="res://sprites/environment/park_tilesheet.png" id="1_yttrb"]
@@ -8,7 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://ccp3skqv8tbdt" path="res://scenes/hazards/jump_me.tscn" id="4_7m7iw"]
 [ext_resource type="PackedScene" uid="uid://ctkxx1rucnee5" path="res://scenes/hazards/break_me.tscn" id="5_5w2yu"]
 [ext_resource type="PackedScene" uid="uid://c53n2xjsvw31t" path="res://scenes/hazards/slide_me.tscn" id="6_h2nu1"]
-[ext_resource type="PackedScene" uid="uid://cmw1kmt7jb0jj" path="res://scenes/cursed_item.tscn" id="7_fdvjj"]
+[ext_resource type="PackedScene" path="res://scenes/cursed_item.tscn" id="7_fdvjj"]
+[ext_resource type="PackedScene" uid="uid://bnw0rsrlxqmml" path="res://ui/HomingTargetIndicator/HomingTargetIndicator.tscn" id="10_unpci"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ypbf"]
 texture = ExtResource("1_yttrb")
@@ -97,5 +98,7 @@ offset_right = 139.5
 offset_bottom = 27.0
 grow_horizontal = 2
 size_flags_horizontal = 0
+
+[node name="HomingTargetIndicator" parent="." instance=ExtResource("10_unpci")]
 
 [connection signal="health_changed" from="player" to="." method="_on_player_health_changed"]

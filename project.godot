@@ -14,6 +14,11 @@ config/name="Wally's Wacky Walk"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://helpers/global.gd"
+GlobalSignal="*res://systems/global_signal/global_signal.gd"
+
 [display]
 
 window/size/viewport_width=960

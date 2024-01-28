@@ -58,7 +58,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh538"]
 size = Vector2(49, 64)
 
-[node name="break_me" type="StaticBody2D"]
+[node name="break_me" type="StaticBody2D" groups=["homing_targets"]]
 collision_layer = 9
 script = ExtResource("1_5oy35")
 
@@ -70,5 +70,10 @@ animation = &"sign"
 [node name="shape" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_sh538")
+
+[node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(35.025, 0.5)
+scale = Vector2(2.45, 3.25)
+rect = Rect2(-24.5, -10, 20, 20)
 
 [connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]

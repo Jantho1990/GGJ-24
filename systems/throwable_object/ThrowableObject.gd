@@ -27,9 +27,7 @@ func _physics_process(delta: float) -> void:
     queue_redraw()
     return
   
-  #velocity = velocity.rotated(0)
-  for throwableObjectMovement in movements:
-    throwableObjectMovement.integrate_velocity(self, delta)
+  _integrate_movement_velocities(self, delta)
   
   #velocity = velocity.rotated(rotation)
   move_and_slide()
@@ -90,8 +88,9 @@ func _get_predicted_movement(prediction_duration_seconds: float) -> PackedVector
   var sim_position = Vector2.ZERO
   while i < prediction_duration_seconds * 1000.0:
     i += sim_delta
-    for throwableObjectMovement in movements:
-      throwableObjectMovement.integrate_velocity(simulatedBody, sim_delta / 1000.0)
+    _integrate_movement_velocities(simulatedBody, sim_delta / 1000.0)
+    #for throwableObjectMovement in movements:
+      #throwableObjectMovement.integrate_velocity(simulatedBody, sim_delta / 1000.0)
     var predicted_velocity = simulatedBody.velocity
     predicted_velocity *= get_physics_process_delta_time()
     sim_position += predicted_velocity
@@ -102,6 +101,11 @@ func _get_predicted_movement(prediction_duration_seconds: float) -> PackedVector
 
 func _hit(_collisionObject: KinematicCollision2D) -> void:
   queue_free()
+
+
+func _integrate_movement_velocities(bodyNode: CharacterBody2D, delta: float) -> void:
+  for throwableObjectMovement in movements:
+    throwableObjectMovement.integrate_velocity(bodyNode, delta)
 
 
 func _reset_movements() -> void:
