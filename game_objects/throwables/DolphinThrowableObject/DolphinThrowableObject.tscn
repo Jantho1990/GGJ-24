@@ -70,6 +70,7 @@ size = Vector2(48, 7)
 collision_layer = 16
 collision_mask = 13
 script = ExtResource("1_inwbp")
+bounce_force = 520.0
 movements = Array[Resource("res://systems/throwable_object/throwable_object_movements/ThrowableObjectMovement.gd")]([SubResource("Resource_sd5wn"), SubResource("Resource_nq2tw"), ExtResource("3_k2oil"), SubResource("Resource_20ds4"), ExtResource("4_ttrdg"), ExtResource("5_7kyvo")])
 
 [node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
