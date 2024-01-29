@@ -1,7 +1,7 @@
 extends Area2D
 
-const buffs = ['health','speed','projectile_size','jump'];
-const debuffs = ['speed','low_gravity','sine'];
+const buffs = ['health','speed','jump'];
+const debuffs = ['speed','low_gravity'];
 
 @export var buff : String;
 @export var debuff : String;
@@ -10,7 +10,7 @@ var rotate_t = 0;
 # Called when the node enters the scene tree for the first time.
 func _ready():
     buff = buffs[rng.randi_range(0,2)];
-    debuff = debuffs[rng.randi_range(0,2)];
+    debuff = debuffs[rng.randi_range(0,1)];
     pass # Replace with function body.
 
 

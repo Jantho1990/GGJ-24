@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED = 160.0
 const JUMP_VELOCITY = -320.0
 var SPEED_OFFSET = 53.0
-@export var health : int = 10000;
+@export var health : int = 2;
 @export var show_dialogue = false
 
 @onready var sprite = $sprite;
@@ -33,7 +33,7 @@ var SINE_WAVES_TO_ADD = 0;
 
 signal health_changed(gained : bool);
 signal dead(selfNode)
-signal item_obtained(buff,debuff)
+signal item_obtained(buff,debuff,throwable_name)
 var rng = RandomNumberGenerator.new()
 var found_wally = false;
 func _ready():
@@ -188,7 +188,7 @@ func consume_bone(buff,debuff):
             SPEED_OFFSET -= 27;
             debuff_flavor = 'Speed down'
         'low_gravity': 
-            gravity_modifier *= 0.5
+            gravity_modifier *= 0.667
             debuff_flavor = 'Low gravity'
         'sine':
             SINE_WAVES_TO_ADD += 1;
@@ -200,8 +200,9 @@ func consume_bone(buff,debuff):
             possible_throwables.append(i);
     current_throwable = possible_throwables[rng.randi_range(0,2)];
     $Thrower.currentThrowable = current_throwable
-    
-    item_obtained.emit(buff_flavor,debuff_flavor);
+    var throwable_instance = current_throwable.instantiate();
+    var throwable_name = throwable_instance.name.replace('ThrowableObject','')
+    item_obtained.emit(buff_flavor,debuff_flavor,throwable_name);
     
         
 
