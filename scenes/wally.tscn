@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://vdv5a2twaovy"]
+[gd_scene load_steps=18 format=3 uid="uid://vdv5a2twaovy"]
 
 [ext_resource type="Script" path="res://scenes/wally.gd" id="1_u5pkf"]
 [ext_resource type="Texture2D" uid="uid://ci7mff4we8fux" path="res://sprites/wally/wait_1.png" id="2_tqnmg"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cd2vgs0wojav" path="res://sprites/wally/walk_5.png" id="7_m8jjm"]
 [ext_resource type="Texture2D" uid="uid://d0xn3qn7vbqhp" path="res://sprites/wally/walk_6.png" id="8_aslie"]
 [ext_resource type="Texture2D" uid="uid://c3rb25j6fbpjd" path="res://sprites/wally/walk_7.png" id="9_vk00n"]
+[ext_resource type="AudioStream" uid="uid://kxrqijmeegp" path="res://audio/sfx/bark.mp3" id="14_815ce"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhd06"]
 radius = 11.0
@@ -106,6 +107,12 @@ collision_mask = 3
 [node name="shape" type="CollisionShape2D" parent="player_detector"]
 position = Vector2(-92, -405)
 shape = SubResource("RectangleShape2D_777fb")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Bark" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("14_815ce")
+bus = &"SFX"
 
 [connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="body_entered" from="player_detector" to="." method="_on_player_detector_body_entered"]

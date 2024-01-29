@@ -49,6 +49,7 @@ func _on_player_detector_body_entered(body):
             wally_found.emit()
         else:
             state = states.BARK
+            $SFX/Bark.play()            
         
         
     pass # Replace with function body.
