@@ -39,3 +39,17 @@ func _on_player_item_obtained(buff, debuff):
     item_popup.get_node('Margin/VBox/Attributes/Debuff').text = debuff;
     item_popup.show();
     pass # Replace with function body.
+
+
+func _on_wally_detector_body_entered(body):
+    if body.name == 'wally':
+        body.state = body.states.WAIT
+    pass # Replace with function body.
+
+
+func _on_wally_wally_found():
+    player.found_wally = true;
+    progress_bar.hide();
+    #$AnimationPlayer.play('RESET');
+    $AnimationPlayer.play('reunite_with_wally')
+    pass # Replace with function body.

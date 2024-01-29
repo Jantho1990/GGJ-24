@@ -1,10 +1,147 @@
-[gd_scene load_steps=6 format=3 uid="uid://cx0vmmmu17mjl"]
+[gd_scene load_steps=11 format=3 uid="uid://cx0vmmmu17mjl"]
 
 [ext_resource type="Script" path="res://screens/GameScreen/GameScreen.gd" id="1_2f7b5"]
 [ext_resource type="PackedScene" uid="uid://dcby0waljrvit" path="res://scenes/park.tscn" id="2_kx5xm"]
 [ext_resource type="PackedScene" uid="uid://dfkkluqpxpjpk" path="res://scenes/player.tscn" id="3_7o4vt"]
 [ext_resource type="PackedScene" uid="uid://bmh4r5no0v8d4" path="res://ui/nodes/PausePopover/PausePopover.tscn" id="3_l5mx0"]
 [ext_resource type="PackedScene" uid="uid://cidafooafflw3" path="res://ui/nodes/ItemPopover/ItemPopover.tscn" id="5_w5e0i"]
+[ext_resource type="PackedScene" uid="uid://vdv5a2twaovy" path="res://scenes/wally.tscn" id="6_caxik"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3x8ui"]
+size = Vector2(40, 38)
+
+[sub_resource type="Animation" id="Animation_boe4y"]
+resource_name = "reunite_with_wally"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:show_dialogue")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wally:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(28761, 0), Vector2(28761, 0), Vector2(28596, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("wally:state")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.1, 1.2, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 4, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("player:state")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4, 4.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 0, 1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("player:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(28574, -8), Vector2(28574, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_s8g3q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:show_dialogue")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wally:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(273, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("wally:state")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("player:state")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("player:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mhjku"]
+_data = {
+"RESET": SubResource("Animation_s8g3q"),
+"reunite_with_wally": SubResource("Animation_boe4y")
+}
 
 [node name="GameScreen" type="Node"]
 script = ExtResource("1_2f7b5")
@@ -12,12 +149,10 @@ script = ExtResource("1_2f7b5")
 [node name="park" parent="." instance=ExtResource("2_kx5xm")]
 
 [node name="park2" parent="." instance=ExtResource("2_kx5xm")]
-visible = false
 position = Vector2(9600, 0)
 difficulty = 2
 
 [node name="park3" parent="." instance=ExtResource("2_kx5xm")]
-visible = false
 position = Vector2(19200, 0)
 difficulty = 3
 
@@ -51,5 +186,41 @@ layer = 3
 
 [node name="ItemPopover" parent="CursedItem" instance=ExtResource("5_w5e0i")]
 
+[node name="wally" parent="." instance=ExtResource("6_caxik")]
+position = Vector2(273, 0)
+
+[node name="wally_detector" type="Area2D" parent="."]
+position = Vector2(9600, 0)
+collision_mask = 129
+
+[node name="shape" type="CollisionShape2D" parent="wally_detector"]
+position = Vector2(-10, -3)
+shape = SubResource("RectangleShape2D_3x8ui")
+
+[node name="wally_detector2" type="Area2D" parent="."]
+position = Vector2(19200, 0)
+collision_mask = 129
+
+[node name="shape" type="CollisionShape2D" parent="wally_detector2"]
+position = Vector2(-10, -3)
+shape = SubResource("RectangleShape2D_3x8ui")
+
+[node name="wally_detector3" type="Area2D" parent="."]
+position = Vector2(28800, 0)
+collision_mask = 129
+
+[node name="shape" type="CollisionShape2D" parent="wally_detector3"]
+position = Vector2(-10, -3)
+shape = SubResource("RectangleShape2D_3x8ui")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mhjku")
+}
+
 [connection signal="health_changed" from="player" to="." method="_on_player_health_changed"]
 [connection signal="item_obtained" from="player" to="." method="_on_player_item_obtained"]
+[connection signal="wally_found" from="wally" to="." method="_on_wally_wally_found"]
+[connection signal="body_entered" from="wally_detector" to="." method="_on_wally_detector_body_entered"]
+[connection signal="body_entered" from="wally_detector2" to="." method="_on_wally_detector_body_entered"]
+[connection signal="body_entered" from="wally_detector3" to="." method="_on_wally_detector_body_entered"]
