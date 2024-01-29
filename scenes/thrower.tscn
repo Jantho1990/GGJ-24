@@ -85,3 +85,9 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_frv80")
 }
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
