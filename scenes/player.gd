@@ -37,7 +37,7 @@ signal item_obtained(buff,debuff)
 var rng = RandomNumberGenerator.new()
 var found_wally = false;
 func _ready():
-
+  sprite.animation_looped.connect(_on_Sprite_animation_looped)
   sprite.play('run');
   
 
@@ -226,3 +226,9 @@ func _on_sprite_animation_finished():
         'kneel':
             state = states.PET
     pass # Replace with function body.
+
+
+func _on_Sprite_animation_looped():
+  match sprite.animation:
+    'run':
+      $SFX/Footsteps.play()

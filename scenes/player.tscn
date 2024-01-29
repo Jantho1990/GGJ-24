@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dfkkluqpxpjpk"]
+[gd_scene load_steps=56 format=3 uid="uid://dfkkluqpxpjpk"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_khlbg"]
 [ext_resource type="Texture2D" uid="uid://dpoxw5cphws4l" path="res://sprites/player/run_0.png" id="1_qtk2g"]
@@ -49,6 +49,9 @@
 [ext_resource type="PackedScene" uid="uid://dmuqo4eqjl1p7" path="res://game_objects/throwables/TennisBallThrowableObject/TennisBallThrowableObject.tscn" id="39_6ou0g"]
 [ext_resource type="AudioStream" uid="uid://b00jscgicnd8f" path="res://audio/sfx/throw.mp3" id="40_r2ml5"]
 [ext_resource type="Texture2D" uid="uid://bx6ia3hl2004q" path="res://sprites/player/found_wally.png" id="41_5741l"]
+[ext_resource type="AudioStream" uid="uid://f3egh200yuh8" path="res://audio/sfx/footsteps_1.mp3" id="49_5yg5d"]
+[ext_resource type="AudioStream" uid="uid://onttnhj01kq0" path="res://audio/sfx/footsteps_2.mp3" id="50_k1ut4"]
+[ext_resource type="AudioStream" uid="uid://i331sq2f262s" path="res://audio/sfx/footsteps_3.mp3" id="51_b4qsu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_567wa"]
 radius = 5.0
@@ -263,6 +266,15 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_p4iyg"]
+streams_count = 3
+stream_0/stream = ExtResource("49_5yg5d")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("50_k1ut4")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("51_b4qsu")
+stream_2/weight = 1.0
+
 [node name="player" type="CharacterBody2D" groups=["homing_targets", "player"]]
 collision_layer = 130
 script = ExtResource("1_khlbg")
@@ -273,7 +285,7 @@ shape = SubResource("CapsuleShape2D_567wa")
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_8ru2p")
-animation = &"pet_wally"
+animation = &"run"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(96, -64)
@@ -300,6 +312,10 @@ currentThrowable = ExtResource("39_6ou0g")
 
 [node name="ThrowWhoosh" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("40_r2ml5")
+bus = &"SFX"
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="SFX"]
+stream = SubResource("AudioStreamRandomizer_p4iyg")
 bus = &"SFX"
 
 [node name="dialogue" type="Sprite2D" parent="."]
