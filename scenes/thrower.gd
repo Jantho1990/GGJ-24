@@ -8,6 +8,7 @@ var _activeThrowable : ThrowableObject
 
 @onready var _animatorNode = $Animator
 @onready var _throwerBasket = $ThrowSource/Basket
+var can_throw = true;
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,16 +17,18 @@ func _ready():
 
 
 func _unhandled_input(_inputEvent: InputEvent) -> void:
-  if not currentThrowable:
-    return
+  if not currentThrowable || !can_throw:
+    return;
   
   if Input.is_action_pressed("fire"):
     if not _activeThrowable:
       _activeThrowable = currentThrowable.instantiate()
       _activeThrowable.aim()  
       _throwerBasket.add_child(_activeThrowable)
-      _animatorNode.play("move")
+      _animatorNode.play("move") 
   elif Input.is_action_just_released("fire"):
+    if not _activeThrowable:
+        return;
     _activeThrowable.aim_release()
     _throwerBasket.remove_child(_activeThrowable)
     var launchSource = get_parent()
@@ -38,7 +41,10 @@ func _unhandled_input(_inputEvent: InputEvent) -> void:
     #await get_tree().idle_frame
     await _activeThrowable.tree_entered
     _activeThrowable = null
-
+    can_throw = false 
+    if $CooldownTimer.is_stopped():
+        $CooldownTimer.start()
+        
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -56,3 +62,8 @@ func _set_currentThrowable(value: PackedScene) -> void:
     return
     
   currentThrowable = value
+
+
+func _on_cooldown_timer_timeout():
+    can_throw = true;
+    pass # Replace with function body.
