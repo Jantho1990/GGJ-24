@@ -36,6 +36,7 @@ func _on_BounceArea_body_entered(bodyNode: CharacterBody2D) -> void:
   
   bodyNode.velocity.y = -bounce_force
   _graphicsNode.play("bounce")
+  $SFX/Bounce.play()
   await _graphicsNode.animation_finished
   _graphicsNode.play("default")
 
@@ -47,3 +48,9 @@ func _enable_bounce_area() -> void:
 
 func _hit(kinematicCollision: KinematicCollision2D) -> void:
   pass
+
+
+func aim_release() -> void:
+  super()
+  if $SFX and $SFX/Launch:
+    $SFX/Launch.play()
