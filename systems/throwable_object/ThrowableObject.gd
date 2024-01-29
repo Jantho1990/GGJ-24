@@ -31,6 +31,10 @@ func _physics_process(delta: float) -> void:
   
   #velocity = velocity.rotated(rotation)
   move_and_slide()
+  _process_collisions()
+  
+  
+func _process_collisions() -> void:
   var collisions = get_slide_collision_count()
   if collisions == 0:
     return
