@@ -15,6 +15,7 @@ func _process(delta):
 func explode():
   $shape.disabled = true;
   $sprite.play('explode');
+  $SFX/Boom.play()
 
 func _on_sprite_animation_finished():
   if $sprite.animation == 'explode':

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctkxx1rucnee5"]
+[gd_scene load_steps=15 format=3 uid="uid://ctkxx1rucnee5"]
 
 [ext_resource type="Script" path="res://scenes/hazards/break_me.gd" id="1_5oy35"]
 [ext_resource type="Texture2D" uid="uid://c6ujual3nvtnl" path="res://sprites/hazards/sign.png" id="1_246ar"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://fbeoofonfmqh" path="res://sprites/hazards/explode_64_6.png" id="8_uhbhr"]
 [ext_resource type="Texture2D" uid="uid://bf2vihp0bw1x3" path="res://sprites/hazards/explode_64_7.png" id="9_3le3e"]
 [ext_resource type="Texture2D" uid="uid://d1qtwjngmvufx" path="res://sprites/hazards/explode_64_8.png" id="10_lbhif"]
+[ext_resource type="AudioStream" uid="uid://cxj25rhfgdkcq" path="res://audio/sfx/boom.mp3" id="12_vwhdt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rd5dt"]
 animations = [{
@@ -75,5 +76,12 @@ shape = SubResource("RectangleShape2D_sh538")
 position = Vector2(35.025, 0.5)
 scale = Vector2(2.45, 3.25)
 rect = Rect2(-24.5, -10, 20, 20)
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Boom" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("12_vwhdt")
+volume_db = -9.984
+bus = &"SFX"
 
 [connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]

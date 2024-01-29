@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ccp3skqv8tbdt"]
+[gd_scene load_steps=15 format=3 uid="uid://ccp3skqv8tbdt"]
 
 [ext_resource type="Texture2D" uid="uid://bjcrrbeiin0jt" path="res://sprites/hazards/bush.png" id="1_1l86y"]
 [ext_resource type="Script" path="res://scenes/hazards/jump_me.gd" id="1_bqcb6"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cofp0bc48q8p2" path="res://sprites/hazards/explode_32_6.png" id="9_ad5bb"]
 [ext_resource type="Texture2D" uid="uid://23uc34pkip7a" path="res://sprites/hazards/explode_32_7.png" id="10_cs8am"]
 [ext_resource type="Texture2D" uid="uid://cgf8r1ixn02x4" path="res://sprites/hazards/explode_32_8.png" id="11_i50ot"]
+[ext_resource type="AudioStream" uid="uid://cxj25rhfgdkcq" path="res://audio/sfx/boom.mp3" id="12_qqcx2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cx1x6"]
 animations = [{
@@ -74,5 +75,12 @@ shape = SubResource("CircleShape2D_xp7sf")
 [node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(2.68221e-07, 1)
 scale = Vector2(1.6, 1.6)
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Boom" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("12_qqcx2")
+volume_db = -9.984
+bus = &"SFX"
 
 [connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
