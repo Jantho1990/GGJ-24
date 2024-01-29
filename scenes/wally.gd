@@ -44,7 +44,7 @@ func _physics_process(delta):
 func _on_player_detector_body_entered(body):
 
     if body.name == 'player':
-        if times_player_caught_up_to_wally == 0:
+        if times_player_caught_up_to_wally == 3:
             state = states.FINAL
             wally_found.emit()
         else:
