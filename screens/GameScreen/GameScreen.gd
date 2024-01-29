@@ -11,12 +11,12 @@ func _enter_tree() -> void:
 
 
 func _ready():
-  var heart = TextureRect.new();
-  heart.texture = heart_texture;
-  var heart2 = TextureRect.new();
-  heart2.texture = heart_texture;
-  player_hearts.add_child(heart)
-  player_hearts.add_child(heart2)
+    for i in 5:
+        var heart = TextureRect.new();
+        heart.texture = heart_texture;
+
+        player_hearts.add_child(heart)
+  
 
 func _process(delta):
     if progress_bar != null:
