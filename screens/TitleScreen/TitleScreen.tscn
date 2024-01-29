@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2j11xwvm4e0u"]
+[gd_scene load_steps=9 format=3 uid="uid://d2j11xwvm4e0u"]
 
 [ext_resource type="Texture2D" uid="uid://ck30gk6p56vpe" path="res://sprites/environment/Paralax-back.png" id="1_36yp5"]
 [ext_resource type="Script" path="res://screens/TitleScreen/TitleScreen.gd" id="1_f3ops"]
 [ext_resource type="Texture2D" uid="uid://cg8jyp3gtjck5" path="res://sprites/environment/Paralax-fore.png" id="2_g45uj"]
 [ext_resource type="Script" path="res://systems/screen_manager/LoadScreenButton.gd" id="3_mtt8i"]
+[ext_resource type="Texture2D" uid="uid://crxyjmhaf38ki" path="res://sprites/title_image.png" id="4_clqx6"]
 [ext_resource type="Script" path="res://ui/nodes/generic/QuitButton.gd" id="4_oays7"]
 [ext_resource type="Script" path="res://screens/TitleScreen/Options.gd" id="5_dak8i"]
 
@@ -64,6 +65,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0, 0.0431373, 0.152941)
+
+[node name="Foreground" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Foreground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_clqx6")
+expand_mode = 2
 
 [node name="MainMenu" type="Control" parent="UI"]
 layout_mode = 3

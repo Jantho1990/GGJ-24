@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cukkg5eq87bl8"]
+[gd_scene load_steps=18 format=3 uid="uid://cukkg5eq87bl8"]
 
 [ext_resource type="Script" path="res://systems/throwable_object/BouncyThrowableObject.gd" id="1_inwbp"]
 [ext_resource type="Script" path="res://systems/throwable_object/throwable_object_movements/StraightThrowableObjectMovement.gd" id="2_4bynd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://dl7rl8i0gafn1" path="res://systems/throwable_object/resources/StandardGroundFriction.tres" id="5_7kyvo"]
 [ext_resource type="Texture2D" uid="uid://bmn2p6h66pcqd" path="res://sprites/throwables/dolphin_0.png" id="5_pgdc0"]
 [ext_resource type="Texture2D" uid="uid://da160xtmjlml5" path="res://sprites/throwables/dolphin_1.png" id="6_hvk26"]
+[ext_resource type="AudioStream" uid="uid://uudhdqsofmv1" path="res://audio/sfx/dolphin-boing.mp3" id="12_xqwde"]
 
 [sub_resource type="Resource" id="Resource_sd5wn"]
 script = ExtResource("2_4bynd")
@@ -92,3 +93,9 @@ monitorable = false
 [node name="PlayerCollider" type="CollisionShape2D" parent="BounceArea"]
 position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_y1q14")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Bounce" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("12_xqwde")
+bus = &"SFX"
