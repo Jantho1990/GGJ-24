@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 
 const SPEED = 160.0
-const JUMP_VELOCITY = -320.0 * 10
-var SPEED_OFFSET = 53.0 * 5
+const JUMP_VELOCITY = -320.0
+var SPEED_OFFSET = 53.0
 @export var health : int = 10000;
 @export var show_dialogue = false
 
