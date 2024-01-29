@@ -13,7 +13,10 @@ func _enter_tree() -> void:
 func _ready():
   var heart = TextureRect.new();
   heart.texture = heart_texture;
+  var heart2 = TextureRect.new();
+  heart2.texture = heart_texture;
   player_hearts.add_child(heart)
+  player_hearts.add_child(heart2)
 
 func _process(delta):
     if progress_bar != null:
@@ -33,10 +36,11 @@ func _on_player_health_changed(gained):
             player_hearts.remove_child(player_hearts.get_children()[0])
 
 
-func _on_player_item_obtained(buff, debuff):
+func _on_player_item_obtained(buff, debuff, throwable_name):
     item_popup.pause_game()
     item_popup.get_node('Margin/VBox/Attributes/Buff').text = buff;
     item_popup.get_node('Margin/VBox/Attributes/Debuff').text = debuff;
+    item_popup.get_node('Margin/VBox/Attributes/Weapon').text = 'New Weapon: ' + throwable_name
     item_popup.show();
     pass # Replace with function body.
 
