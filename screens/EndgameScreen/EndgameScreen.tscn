@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjub8aaw78c2s"]
+[gd_scene load_steps=6 format=3 uid="uid://cjub8aaw78c2s"]
 
-[ext_resource type="Script" path="res://systems/screen_manager/Screen.gd" id="1_1nu4i"]
+[ext_resource type="Script" path="res://screens/EndgameScreen/EndgameScreen.gd" id="1_ttbfp"]
 [ext_resource type="Texture2D" uid="uid://ck30gk6p56vpe" path="res://sprites/environment/Paralax-back.png" id="2_mpd7e"]
 [ext_resource type="Texture2D" uid="uid://cg8jyp3gtjck5" path="res://sprites/environment/Paralax-fore.png" id="3_rgwr4"]
 [ext_resource type="Script" path="res://systems/screen_manager/LoadScreenButton.gd" id="4_sl0a0"]
+[ext_resource type="AudioStream" uid="uid://ll18e8kjtdi0" path="res://audio/sfx/wah-wah-sad-trombone.mp3" id="5_868w1"]
 
 [node name="EndgameScreen" type="Node"]
-script = ExtResource("1_1nu4i")
+script = ExtResource("1_ttbfp")
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 10
@@ -107,3 +108,8 @@ layout_mode = 2
 text = "Main Menu"
 script = ExtResource("4_sl0a0")
 screen_name = "TitleScreen"
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="WopWop" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("5_868w1")
