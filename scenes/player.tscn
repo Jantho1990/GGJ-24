@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dfkkluqpxpjpk"]
+[gd_scene load_steps=52 format=3 uid="uid://dfkkluqpxpjpk"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_khlbg"]
 [ext_resource type="Texture2D" uid="uid://dpoxw5cphws4l" path="res://sprites/player/run_0.png" id="1_qtk2g"]
@@ -301,6 +301,7 @@ currentThrowable = ExtResource("39_6ou0g")
 [node name="ThrowWhoosh" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("40_r2ml5")
 bus = &"SFX"
+
 [node name="dialogue" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(23, -55)
