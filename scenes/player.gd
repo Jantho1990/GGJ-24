@@ -2,9 +2,10 @@ extends CharacterBody2D
 
 
 const SPEED = 160.0
-const JUMP_VELOCITY = -320.0
-var SPEED_OFFSET = 53.0;
-@export var health : int = 1;
+const JUMP_VELOCITY = -320.0 * 10
+var SPEED_OFFSET = 53.0 * 5
+@export var health : int = 10000;
+@export var show_dialogue = false
 
 @onready var sprite = $sprite;
 @onready var hitbox = $shape;
@@ -21,6 +22,8 @@ var max_jumps : int = 1;
 var jumps_remaining : int = 1;
 var is_hurting : bool = false;
 var is_dead := false
+enum states{IN_GAME,KNEEL,PET}
+@export var state = states.IN_GAME
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -32,6 +35,7 @@ signal health_changed(gained : bool);
 signal dead(selfNode)
 signal item_obtained(buff,debuff)
 var rng = RandomNumberGenerator.new()
+var found_wally = false;
 func _ready():
 
   sprite.play('run');
@@ -46,7 +50,7 @@ func _exit_tree() -> void:
 
 
 func _input(event):
-  if is_hurting:
+  if is_hurting || found_wally:
     return;
   if event.is_action_pressed('jump') && jumps_remaining > 0:
     jumps_remaining -= 1;
@@ -67,7 +71,7 @@ func _input(event):
     ## Let the world know player throws
 
 func get_input() -> float:
-  if is_dead:
+  if is_dead || found_wally:
     #sprite.animation = 'tumble'
     return 1.0
   
@@ -91,8 +95,12 @@ func get_input() -> float:
   return Input.get_axis("slow_down","speed_up");
 
 func _physics_process(delta):
-
+  if show_dialogue:
+    $dialogue.show();
+  else:
+    $dialogue.hide()
   # Add the gravity.
+  
   if not is_on_floor():
     velocity.y += gravity * delta * gravity_modifier
   
@@ -115,7 +123,17 @@ func _physics_process(delta):
   else:
     hitbox.rotation = 0;
     hitbox.position.y = 0;
-    
+
+  if found_wally && (state != states.KNEEL || state == states.PET):
+    velocity.x = 0;
+    sprite.animation = 'idle'
+  if state == states.KNEEL:
+    sprite.animation = 'kneel';
+  elif state == states.PET:
+    sprite.animation = 'pet_wally'
+    velocity = Vector2.ZERO
+    if !sprite.is_playing():
+        sprite.play('pet_wally')
   move_and_slide();
   
   if is_on_floor():
@@ -179,8 +197,6 @@ func consume_bone(buff,debuff):
     
     var possible_throwables = [];
     for i in throwables:
-        print(current_throwable)
-        print(i)
         if i != current_throwable:
             possible_throwables.append(i);
     current_throwable = possible_throwables[rng.randi_range(0,2)];
@@ -197,6 +213,7 @@ func _on_sprite_animation_finished():
           sprite.animation = ''
         'tumble':
             is_hurting = false;
+            is_throwing = false;
             if not is_dead:
               sprite.play('run');
             else:
@@ -206,4 +223,6 @@ func _on_sprite_animation_finished():
             is_throwing = false;
         'throw':
             is_throwing = false;
+        'kneel':
+            state = states.PET
     pass # Replace with function body.

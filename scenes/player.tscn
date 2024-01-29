@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dfkkluqpxpjpk"]
+[gd_scene load_steps=51 format=3 uid="uid://dfkkluqpxpjpk"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_khlbg"]
 [ext_resource type="Texture2D" uid="uid://dpoxw5cphws4l" path="res://sprites/player/run_0.png" id="1_qtk2g"]
@@ -10,20 +10,28 @@
 [ext_resource type="Texture2D" uid="uid://rd2xu4gaq8ya" path="res://sprites/player/prepare_to_throw_1.png" id="3_m2hmt"]
 [ext_resource type="Texture2D" uid="uid://bttjm6dfc75ky" path="res://sprites/player/run_3.png" id="4_10b61"]
 [ext_resource type="Texture2D" uid="uid://di3e3kxv1bfgu" path="res://sprites/player/prepare_to_throw_2.png" id="4_f7ws2"]
+[ext_resource type="Texture2D" uid="uid://1ucpxyc8uvp1" path="res://sprites/player/idle.png" id="4_t4uwq"]
 [ext_resource type="Texture2D" uid="uid://bfiq6rfjmuw52" path="res://sprites/player/prepare_to_throw_3.png" id="5_s7fni"]
 [ext_resource type="Texture2D" uid="uid://jmgv2qcqngnf" path="res://sprites/player/run_4.png" id="5_tultd"]
 [ext_resource type="Texture2D" uid="uid://c4kyeic21pf8m" path="res://sprites/player/prepare_to_throw_4.png" id="6_08ude"]
 [ext_resource type="Texture2D" uid="uid://dikokhlxbi86w" path="res://sprites/player/run_5.png" id="6_n63uy"]
 [ext_resource type="Texture2D" uid="uid://dc2konfswl2vc" path="res://sprites/player/prepare_to_throw_5.png" id="7_i4hiw"]
 [ext_resource type="Texture2D" uid="uid://bsge8h0an8ne7" path="res://sprites/player/run_6.png" id="7_w4dtg"]
+[ext_resource type="Texture2D" uid="uid://d4fmef4k5tw42" path="res://sprites/player/idle_0.png" id="7_x6c2i"]
 [ext_resource type="Texture2D" uid="uid://nolnqwpomchi" path="res://sprites/player/prepare_to_throw_6.png" id="8_5pwpc"]
+[ext_resource type="Texture2D" uid="uid://dqbp6v0632031" path="res://sprites/player/idle_1.png" id="8_fe0tb"]
 [ext_resource type="Texture2D" uid="uid://foweyff16de2" path="res://sprites/player/run_7.png" id="8_llrgw"]
 [ext_resource type="Texture2D" uid="uid://c3846jl3u4pn5" path="res://sprites/player/run_8.png" id="9_an4ap"]
 [ext_resource type="Texture2D" uid="uid://2qa3yq4rpbc3" path="res://sprites/player/prepare_to_throw_7.png" id="9_p3ecx"]
+[ext_resource type="Texture2D" uid="uid://ceordar5m4u1s" path="res://sprites/player/idle_2.png" id="9_ubxc2"]
+[ext_resource type="Texture2D" uid="uid://ba5cm6yglbl2o" path="res://sprites/player/idle_3.png" id="10_22wg6"]
 [ext_resource type="Texture2D" uid="uid://ciy8ljrkjqwgu" path="res://sprites/player/run_9.png" id="10_fuvar"]
 [ext_resource type="Texture2D" uid="uid://bjibikocxfq6e" path="res://sprites/player/prepare_to_throw_8.png" id="10_ijke6"]
+[ext_resource type="Texture2D" uid="uid://cr5pbhtfk0x7n" path="res://sprites/player/idle_4.png" id="11_88oyl"]
 [ext_resource type="Texture2D" uid="uid://bmoc6d18wk1e7" path="res://sprites/player/prepare_to_throw_9.png" id="11_pe0jy"]
+[ext_resource type="Texture2D" uid="uid://dp64plh8yhqca" path="res://sprites/player/idle_5.png" id="12_41lfa"]
 [ext_resource type="Texture2D" uid="uid://cxbv6ccyf1byo" path="res://sprites/player/tumble_0.png" id="12_g5obg"]
+[ext_resource type="Texture2D" uid="uid://cvbdfefmc2rod" path="res://sprites/player/idle_6.png" id="13_gsuid"]
 [ext_resource type="Texture2D" uid="uid://dh0kcm6ivwcjn" path="res://sprites/player/tumble_1.png" id="13_htu4e"]
 [ext_resource type="Texture2D" uid="uid://fkioufbkdtj0" path="res://sprites/player/tumble_2.png" id="14_5gn7a"]
 [ext_resource type="Texture2D" uid="uid://7fd0yjs45yl4" path="res://sprites/player/tumble_3.png" id="15_32sup"]
@@ -40,6 +48,7 @@
 [ext_resource type="PackedScene" uid="uid://bai0lshem42qm" path="res://scenes/thrower.tscn" id="36_wbgj4"]
 [ext_resource type="PackedScene" uid="uid://dmuqo4eqjl1p7" path="res://game_objects/throwables/TennisBallThrowableObject/TennisBallThrowableObject.tscn" id="39_6ou0g"]
 [ext_resource type="AudioStream" uid="uid://b00jscgicnd8f" path="res://audio/sfx/throw.mp3" id="40_r2ml5"]
+[ext_resource type="Texture2D" uid="uid://bx6ia3hl2004q" path="res://sprites/player/found_wally.png" id="41_5741l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_567wa"]
 radius = 5.0
@@ -60,6 +69,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("4_t4uwq")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_trb58")
 }],
 "loop": true,
@@ -73,6 +90,37 @@ animations = [{
 "loop": true,
 "name": &"jump_and_prepare_to_throw",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_x6c2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fe0tb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ubxc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_22wg6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_88oyl")
+}],
+"loop": false,
+"name": &"kneel",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_41lfa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_gsuid")
+}],
+"loop": true,
+"name": &"pet_wally",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -216,7 +264,7 @@ animations = [{
 }]
 
 [node name="player" type="CharacterBody2D" groups=["homing_targets", "player"]]
-collision_layer = 2
+collision_layer = 130
 script = ExtResource("1_khlbg")
 
 [node name="shape" type="CollisionShape2D" parent="."]
@@ -225,7 +273,7 @@ shape = SubResource("CapsuleShape2D_567wa")
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_8ru2p")
-animation = &"die"
+animation = &"pet_wally"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(96, -64)
@@ -253,5 +301,9 @@ currentThrowable = ExtResource("39_6ou0g")
 [node name="ThrowWhoosh" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("40_r2ml5")
 bus = &"SFX"
+[node name="dialogue" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(23, -55)
+texture = ExtResource("41_5741l")
 
 [connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]

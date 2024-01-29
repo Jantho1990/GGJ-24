@@ -58,7 +58,7 @@ func spawn_hazards():
 
 func generate_spawn_points():
     var spawn_points = [];
-    for i in range(1,30):
+    for i in range(1,29):
         spawn_points.append(i*320)
 
 

@@ -1,9 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://vdv5a2twaovy"]
+[gd_scene load_steps=17 format=3 uid="uid://vdv5a2twaovy"]
 
 [ext_resource type="Script" path="res://scenes/wally.gd" id="1_u5pkf"]
+[ext_resource type="Texture2D" uid="uid://ci7mff4we8fux" path="res://sprites/wally/wait_1.png" id="2_tqnmg"]
 [ext_resource type="Texture2D" uid="uid://bisuwiluim6b1" path="res://sprites/wally/walk_0.png" id="2_w6ew7"]
+[ext_resource type="Texture2D" uid="uid://dqj5i27jg3pse" path="res://sprites/wally/wait_2.png" id="3_8whcq"]
 [ext_resource type="Texture2D" uid="uid://btscl0ek23eqx" path="res://sprites/wally/walk_1.png" id="3_e2tci"]
+[ext_resource type="Texture2D" uid="uid://b4gnndapvrax" path="res://sprites/wally/wait_3.png" id="4_3ts2r"]
 [ext_resource type="Texture2D" uid="uid://diam30jirl1k4" path="res://sprites/wally/walk_2.png" id="4_yhsgq"]
+[ext_resource type="Texture2D" uid="uid://dsy1gqk8fk40h" path="res://sprites/wally/wait_0.png" id="5_a5ulv"]
 [ext_resource type="Texture2D" uid="uid://v1eo8f57jp8u" path="res://sprites/wally/walk_3.png" id="5_urmiy"]
 [ext_resource type="Texture2D" uid="uid://bmra4pjlwt006" path="res://sprites/wally/walk_4.png" id="6_amm41"]
 [ext_resource type="Texture2D" uid="uid://cd2vgs0wojav" path="res://sprites/wally/walk_5.png" id="7_m8jjm"]
@@ -16,6 +20,37 @@ height = 42.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m0rsk"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tqnmg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8whcq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3ts2r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3ts2r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8whcq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_a5ulv")
+}],
+"loop": false,
+"name": &"bark",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tqnmg")
+}],
+"loop": false,
+"name": &"wait",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_w6ew7")
@@ -46,7 +81,12 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_777fb"]
+size = Vector2(204, 830)
+
 [node name="wally" type="CharacterBody2D"]
+collision_layer = 128
+collision_mask = 0
 script = ExtResource("1_u5pkf")
 
 [node name="shape" type="CollisionShape2D" parent="."]
@@ -58,3 +98,14 @@ shape = SubResource("CapsuleShape2D_qhd06")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_m0rsk")
 animation = &"walk"
+
+[node name="player_detector" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="shape" type="CollisionShape2D" parent="player_detector"]
+position = Vector2(-92, -405)
+shape = SubResource("RectangleShape2D_777fb")
+
+[connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="body_entered" from="player_detector" to="." method="_on_player_detector_body_entered"]
